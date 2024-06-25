@@ -7,11 +7,11 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  username: string | null = '';
+  username: string | null = null;
 
   constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.username = this.authService.getUsername();
   }
 }

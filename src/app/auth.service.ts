@@ -19,20 +19,24 @@ export class AuthService {
   login(username: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, { username, password }).pipe(
       tap((response: any) => {
-        localStorage.setItem('username', username);
+        if (typeof localStorage !== 'undefined') {
+          localStorage.setItem('username', username);
+        }
       })
     );
   }
 
   logout(): void {
-    localStorage.removeItem('username');
+    if (typeof localStorage !== 'undefined') {
+      localStorage.removeItem('username');
+    }
   }
 
   isLoggedIn(): boolean {
-    return localStorage.getItem('username') !== null;
+    return typeof localStorage !== 'undefined' && localStorage.getItem('username') !== null;
   }
 
   getUsername(): string | null {
-    return localStorage.getItem('username');
+    return typeof localStorage !== 'undefined' ? localStorage.getItem('username') : null;
   }
 }
