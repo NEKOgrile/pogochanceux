@@ -1,9 +1,5 @@
-<div class="container">
-    <h1>Welcome to Pogochanceux!</h1>
-    <div class="buttons">
-      <button routerLink="/register">Register</button>
-      <button routerLink="/login">Login</button>
-    </div>
-    <router-outlet></router-outlet>
-  </div>
-  
+<h1>Bienvenue sur la page d'accueil</h1>
+<div *ngIf="username">
+  <p>Bonjour, {{ username }} !</p>
+</div>
+<!-- Ajoutez votre contenu de page d'accueil ici -->
