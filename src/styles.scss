@@ -13,3 +13,20 @@
 // ...
 
 // Vos styles personnalisés viennent après l'importation de Bootstrap
+.form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .card {
+    margin-top: 2rem;
+  }
+  
+  .btn-primary {
+    background-color: #f44336; // Exemple de personnalisation de couleur pour les boutons primaires
+    border-color: #f44336;
+  }
+  
+  .btn-primary:hover {
+    background-color: #d32f2f; // Couleur au survol
+    border-color: #d32f2f;
+  }
