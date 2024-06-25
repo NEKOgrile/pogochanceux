@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+// Bootstrap variables and mixins
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
+
+// Bootstrap components
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+// Optionnel : Importez les composants individuellement selon vos besoins
+// @import '../node_modules/bootstrap/scss/_alert';
+// @import '../node_modules/bootstrap/scss/_button';
+// @import '../node_modules/bootstrap/scss/_modal';
+// ...
+
+// Vos styles personnalisés viennent après l'importation de Bootstrap
