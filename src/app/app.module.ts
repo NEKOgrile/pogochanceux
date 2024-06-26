@@ -8,13 +8,19 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
+import { ChanceuxComponent } from './chanceux/chanceux.component';
+import { ShinyComponent } from './shiny/shiny.component';
+import { ObscureComponent } from './obscure/obscure.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ChanceuxComponent,
+    ShinyComponent,
+    ObscureComponent
   ],
   imports: [
     BrowserModule,
