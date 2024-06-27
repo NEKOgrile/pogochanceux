@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { ChanceuxComponent } from './chanceux/chanceux.component';
 import { ShinyComponent } from './shiny/shiny.component';
 import { ObscureComponent } from './obscure/obscure.component';
+import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ObscureComponent } from './obscure/obscure.component';
     HomeComponent,
     ChanceuxComponent,
     ShinyComponent,
-    ObscureComponent
+    ObscureComponent,
+    PokemonCardComponent
   ],
   imports: [
     BrowserModule,

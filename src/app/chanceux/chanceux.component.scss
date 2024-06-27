@@ -1,0 +1,22 @@
+/* Style pour les boutons */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    .btn {
+        background-color: #3b4cca;
+        color: #fff;
+        border: 1px solid #3b4cca;
+        border-radius: 5px;
+        padding: 10px 20px;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: #ffcb05;
+            color: #3b4cca;
+            border-color: #ffcb05;
+        }
+    }
+}

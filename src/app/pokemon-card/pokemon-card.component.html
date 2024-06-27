@@ -1,4 +1,4 @@
-<div class="pokemon-card" (click)="onCardClick()">
+<div class="pokemon-card" [ngClass]="displayMode" (click)="onCardClick()">
     <div class="pokemon-card-header" *ngIf="displayMode === 'default'">
       {{ pokemon.name }}
     </div>
