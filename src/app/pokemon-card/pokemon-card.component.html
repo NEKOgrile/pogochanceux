@@ -1,0 +1,16 @@
+<div class="pokemon-card" (click)="onCardClick()">
+    <div class="pokemon-card-header" *ngIf="displayMode === 'default'">
+      {{ pokemon.name }}
+    </div>
+    <div class="pokemon-card-body">
+      <img [src]="pokemon.imageUrl" [alt]="pokemon.name" />
+      <div class="pokemon-info" *ngIf="displayMode === 'default'">
+        <span class="pokemon-type">{{ type }}</span>
+        <span class="pokemon-id">ID: {{ pokemon.id }}</span>
+      </div>
+    </div>
+    <div class="pokemon-card-footer" *ngIf="displayMode === 'default'">
+      <button>Details</button>
+    </div>
+  </div>
+  
