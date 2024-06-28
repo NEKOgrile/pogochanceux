@@ -5,7 +5,7 @@ interface Pokemon {
   id: string;
   name: string;
   type: string; // Vous pouvez définir le type correct ici
-  imageUrl: string; // Supposons que les images sont nommées par ID
+  imageUrl: string; // URL de l'image du Pokémon
 }
 
 @Component({
@@ -32,7 +32,7 @@ export class ChanceuxComponent implements OnInit {
         id: id,
         name: pokemonData[id],
         type: 'Unknown', // Vous pouvez définir le type plus tard si nécessaire
-        imageUrl: '' // Supposons que les images sont nommées par ID
+        imageUrl: this.formatImageUrl(parseInt(id)) // Formater l'URL de l'image
       }));
 
       // Trier pokemonsArray par ID en utilisant une fonction de comparaison numérique
@@ -46,7 +46,7 @@ export class ChanceuxComponent implements OnInit {
     }
   }
 
-  // Fonction de comparaison pour les IDs (trie numérique)
+  // Fonction pour comparer les IDs (tri numérique)
   private compareIds(idA: string, idB: string): number {
     const numA = parseInt(idA, 10);
     const numB = parseInt(idB, 10);
@@ -58,6 +58,13 @@ export class ChanceuxComponent implements OnInit {
 
     // Sinon, comparer les IDs comme des chaînes
     return idA.localeCompare(idB);
+  }
+
+  // Fonction pour formater l'URL de l'image du Pokémon
+  private formatImageUrl(id: number): string {
+    const baseUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
+    // Ne pas ajouter de zéro devant le numéro de l'ID
+    return `${baseUrl}${id}.png`;
   }
 
   setColumns(count: number) {
