@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { log } from 'console';
 
 @Component({
   selector: 'app-chanceux',
@@ -8,16 +10,35 @@ import { Component, OnInit } from '@angular/core';
 export class ChanceuxComponent implements OnInit {
   colClass: string = 'col-md-4'; // Default 3 cards per row
   displayMode: string = 'default'; // Default display mode
-  pokemons = [
-    { id: 1, name: 'Pikachu', type: 'Electric', imageUrl: 'assets/images/pikachu.png' },
-    { id: 2, name: 'Charmander', type: 'Fire', imageUrl: 'assets/images/charmander.png' },
-    { id: 3, name: 'Bulbasaur', type: 'Grass', imageUrl: 'assets/images/bulbasaur.png' },
-    // Ajoutez plus de données Pokémon ici...
-  ];
+  pokemons: any[] = [];
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadPokemonData();
+  }
+
+
+  loadPokemonData() {
+    this.http.get('https://raw.githubusercontent.com/pokealarm/pokealarm/dev/locales/fr.json')
+      .subscribe((data: any) => {
+        const pokemonData = data['pokemon'];
+        const pokemonsArray = Object.keys(pokemonData).map(id => ({
+          id: id,
+          name: pokemonData[id],
+          type: 'Unknown', // Vous pouvez définir le type plus tard si nécessaire
+          imageUrl: `` // Suppose que les images sont nommées par ID
+          
+        }));
+
+        // Afficher les IDs dans la console
+        console.log('poekmno id', pokemonData['001'])
+        console.log('Pokemons array:', pokemonsArray.map(p => p.id));
+        this.pokemons = pokemonsArray;
+      });
+  }
+
+  
 
   setColumns(count: number) {
     this.colClass = `col-md-${12 / count}`;
