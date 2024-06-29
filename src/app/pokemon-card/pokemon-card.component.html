@@ -2,7 +2,7 @@
   <div class="pokemon-card-header" *ngIf="displayMode === 'default'" [ngClass]="getHeaderClass()">
     {{ pokemon.name }}
   </div>
-  <div class="pokemon-card-body">
+  <div class="pokemon-card-body" [ngClass]="displayMode !== 'default' ? getBorderClass() : ''">
     <img [src]="pokemon.imageUrl" [alt]="pokemon.name" />
     <div class="pokemon-info" *ngIf="displayMode === 'default'">
       <span class="pokemon-id">ID: {{ pokemon.id }}</span>

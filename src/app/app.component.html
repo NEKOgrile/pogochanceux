@@ -1,1 +1,24 @@
+<div class="navbar">
+    <div class="navbar-logo">
+      <img src="path/to/logo.png" alt="Logo" class="logo">
+    </div>
+    <nav class="navbar-menu">
+      <ul class="menu-items">
+        <li><a href="#">Home</a></li>
+        <li><a [routerLink]="['/chanceux']">Chanceux</a></li>
+        <li><a [routerLink]="['/shiny']">Shiny</a></li>
+        <li><a [routerLink]="['/obscure']">Obscure</a></li>
+        <li><a [routerLink]="['/Profil']">Profil</a></li>
+      </ul>
+      <!-- Pour l'affichage en cas de non connecté -->
+      <ul class="menu-items auth-section">
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Register</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="content">
+    <!-- Le contenu principal de votre site -->
+  </div>
+  
 <router-outlet></router-outlet>

@@ -42,7 +42,8 @@ export class ChanceuxComponent implements OnInit {
 
   setColumns(count: number) {
     this.colClass = `col-md-${12 / count}`;
-    this.displayMode = (count === 6 || count === 12) ? 'compact' : 'default';
+    this.displayMode = (count === 6) ? 'compact' : 'default';
+    console.log(this.displayMode)
   }
 
   onPokemonClicked(event: any) {

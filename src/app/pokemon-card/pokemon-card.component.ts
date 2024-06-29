@@ -7,8 +7,10 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class PokemonCardComponent {
   @Input() pokemon: any;
+  @Input() type!: string;
+  @Input() displayMode: string = 'default'; // Ajoutez cette ligne
   @Output() pokemonClicked = new EventEmitter<any>();
-  @Input() displayMode: string = 'default';
+  
 
   constructor() {}
 
@@ -41,4 +43,15 @@ export class PokemonCardComponent {
 
     return styles;
   }
+
+  getBorderClass(): string {
+    if (this.pokemon.primaryType && this.pokemon.secondaryType) {
+      return `${this.pokemon.primaryType.toLowerCase()}-card ${this.pokemon.secondaryType.toLowerCase()}-card`;
+    } else if (this.pokemon.primaryType) {
+      return `${this.pokemon.primaryType.toLowerCase()}-card`;
+    } else {
+      return '';
+    }
+  }
+  
 }
