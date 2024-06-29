@@ -1,4 +1,3 @@
-/* Style pour toutes les cartes */
 .pokemon-card {
     border: 2px solid #000;
     border-radius: 15px;
@@ -6,76 +5,1404 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     transition: transform 0.2s;
     margin: 10px;
-
+  
     &:hover {
-        transform: scale(1.05);
+      transform: scale(1.05);
     }
-
+  
     &.default {
-
-        .pokemon-card-header,
-        .pokemon-card-footer {
-            background-color: #ffcb05;
+      .pokemon-card-header,
+      .pokemon-card-footer {
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        font-size: 1.2em;
+        font-weight: bold;
+        border-bottom: 2px solid #000;
+      }
+  
+      .pokemon-card-body {
+        padding: 10px;
+        background: #fff;
+  
+        img {
+          display: block;
+          max-width: 100%;
+          height: auto;
+          margin: 0 auto 10px;
+        }
+  
+        .pokemon-info {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 10px;
+  
+          .pokemon-types {
+            display: flex;
+            gap: 5px;
+  
+            .pokemon-type {
+              padding: 5px 10px;
+              border-radius: 5px;
+              color: #fff;
+              font-weight: bold;
+              text-transform: uppercase;
+            }
+          }
+  
+          .pokemon-id {
             color: #3b4cca;
-            text-align: center;
-            padding: 10px;
-            font-size: 1.2em;
             font-weight: bold;
-            border-bottom: 2px solid #000;
+          }
         }
+      }
+      .plante-header {
+        background-color: #78c850; /* Couleur pour le type Plante */
+        color: #fff;
+      }
+      
+      .feu-header {
+        background-color: #f08030; /* Couleur pour le type Feu */
+        color: #fff;
+      }
+      
+      .eau-header {
+        background-color: #6890f0; /* Couleur pour le type Eau */
+        color: #fff;
+      }
+      
+      .insecte-header {
+        background-color: #a8b820; /* Couleur pour le type Insecte */
+        color: #fff;
+      }
+      
+      .normal-header {
+        background-color: #a8a878; /* Couleur pour le type Normal */
+        color: #fff;
+      }
+      
+      .électrik-header {
+        background-color: #f8d030; /* Couleur pour le type Électrik */
+        color: #fff;
+      }
+      
+      .poison-header {
+        background-color: #a040a0; /* Couleur pour le type Poison */
+        color: #fff;
+      }
+      
+      .fée-header {
+        background-color: #ee99ac; /* Couleur pour le type Fée */
+        color: #fff;
+      }
+      
+      .vol-header {
+        background-color: #a890f0; /* Couleur pour le type Vol */
+        color: #fff;
+      }
+      
+      .combat-header {
+        background-color: #c03028; /* Couleur pour le type Combat */
+        color: #fff;
+      }
+      
+      .sol-header {
+        background-color: #e0c068; /* Couleur pour le type Sol */
+        color: #fff;
+      }
+      
+      .roche-header {
+        background-color: #b8a038; /* Couleur pour le type Roche */
+        color: #fff;
+      }
+      
+      .glace-header {
+        background-color: #98d8d8; /* Couleur pour le type Glace */
+        color: #fff;
+      }
+      
+      .acier-header {
+        background-color: #b8b8d0; /* Couleur pour le type Acier */
+        color: #fff;
+      }
+      
+      .psy-header {
+        background-color: #f85888; /* Couleur pour le type Psy */
+        color: #fff;
+      }
+      
+      .spectre-header {
+        background-color: #705898; /* Couleur pour le type Spectre */
+        color: #fff;
+      }
+      
+      .dragon-header {
+        background-color: #7038f8; /* Couleur pour le type Dragon */
+        color: #fff;
+      }
+      
+      .ténèbres-header {
+        background-color: #705848; /* Couleur pour le type Ténèbres */
+        color: #fff;
+      }
+      
+      .plante-header-feu-header {
+        background: linear-gradient(to right, #78c850, #f08030); /* Plante + Feu */
+        color: #fff;
+      }
+      
+      .plante-header-eau-header {
+        background: linear-gradient(to right, #78c850, #6890f0); /* Plante + Eau */
+        color: #fff;
+      }
+      
+      .plante-header-insecte-header {
+        background: linear-gradient(to right, #78c850, #a8b820); /* Plante + Insecte */
+        color: #fff;
+      }
+      
+      .plante-header-normal-header {
+        background: linear-gradient(to right, #78c850, #a8a878); /* Plante + Normal */
+        color: #fff;
+      }
+      
+      .plante-header-électrik-header {
+        background: linear-gradient(to right, #78c850, #f8d030); /* Plante + Électrik */
+        color: #fff;
+      }
+      
+      .plante-header-poison-header {
+        background: linear-gradient(to right, #78c850, #a040a0); /* Plante + Poison */
+        color: #fff;
+      }
+      
+      .plante-header-fée-header {
+        background: linear-gradient(to right, #78c850, #ee99ac); /* Plante + Fée */
+        color: #fff;
+      }
+      
+      .plante-header-vol-header {
+        background: linear-gradient(to right, #78c850, #a890f0); /* Plante + Vol */
+        color: #fff;
+      }
+      
+      .plante-header-combat-header {
+        background: linear-gradient(to right, #78c850, #c03028); /* Plante + Combat */
+        color: #fff;
+      }
+      
+      .plante-header-sol-header {
+        background: linear-gradient(to right, #78c850, #e0c068); /* Plante + Sol */
+        color: #fff;
+      }
+      
+      .plante-header-roche-header {
+        background: linear-gradient(to right, #78c850, #b8a038); /* Plante + Roche */
+        color: #fff;
+      }
+      
+      .plante-header-glace-header {
+        background: linear-gradient(to right, #78c850, #98d8d8); /* Plante + Glace */
+        color: #fff;
+      }
+      
+      .plante-header-acier-header {
+        background: linear-gradient(to right, #78c850, #b8b8d0); /* Plante + Acier */
+        color: #fff;
+      }
+      
+      .plante-header-psy-header {
+        background: linear-gradient(to right, #78c850, #f85888); /* Plante + Psy */
+        color: #fff;
+      }
+      
+      .plante-header-spectre-header {
+        background: linear-gradient(to right, #78c850, #705898); /* Plante + Spectre */
+        color: #fff;
+      }
+      
+      .plante-header-dragon-header {
+        background: linear-gradient(to right, #78c850, #7038f8); /* Plante + Dragon */
+        color: #fff;
+      }
+      
+      .plante-header-ténèbres-header {
+        background: linear-gradient(to right, #78c850, #705848); /* Plante + Ténèbres */
+        color: #fff;
+      }
+      
+      .feu-header-eau-header {
+        background: linear-gradient(to right, #f08030, #6890f0); /* Feu + Eau */
+        color: #fff;
+      }
+      
+      .feu-header-insecte-header {
+        background: linear-gradient(to right, #f08030, #a8b820); /* Feu + Insecte */
+        color: #fff;
+      }
+      
+      .feu-header-normal-header {
+        background: linear-gradient(to right, #f08030, #a8a878); /* Feu + Normal */
+        color: #fff;
+      }
+      
+      .feu-header-électrik-header {
+        background: linear-gradient(to right, #f08030, #f8d030); /* Feu + Électrik */
+        color: #fff;
+      }
+      
+      .feu-header-poison-header {
+        background: linear-gradient(to right, #f08030, #a040a0); /* Feu + Poison */
+        color: #fff;
+      }
+      
+      .feu-header-fée-header {
+        background: linear-gradient(to right, #f08030, #ee99ac); /* Feu + Fée */
+        color: #fff;
+      }
+      
+      .feu-header-vol-header {
+        background: linear-gradient(to right, #f08030, #a890f0); /* Feu + Vol */
+        color: #fff;
+      }
+      
+      .feu-header-combat-header {
+        background: linear-gradient(to right, #f08030, #c03028); /* Feu + Combat */
+        color: #fff;
+      }
+      
+      .feu-header-sol-header {
+        background: linear-gradient(to right, #f08030, #e0c068); /* Feu + Sol */
+        color: #fff;
+      }
+      
+      .feu-header-roche-header {
+        background: linear-gradient(to right, #f08030, #b8a038); /* Feu + Roche */
+        color: #fff;
+      }
+      
+      .feu-header-glace-header {
+        background: linear-gradient(to right, #f08030, #98d8d8); /* Feu + Glace */
+        color: #fff;
+      }
+      
+      .feu-header-acier-header {
+        background: linear-gradient(to right, #f08030, #b8b8d0); /* Feu + Acier */
+        color: #fff;
+      }
+      
+      .feu-header-psy-header {
+        background: linear-gradient(to right, #f08030, #f85888); /* Feu + Psy */
+        color: #fff;
+      }
+      
+      .feu-header-spectre-header {
+        background: linear-gradient(to right, #f08030, #705898); /* Feu + Spectre */
+        color: #fff;
+      }
+      
+      .feu-header-dragon-header {
+        background: linear-gradient(to right, #f08030, #7038f8); /* Feu + Dragon */
+        color: #fff;
+      }
+      
+      .feu-header-ténèbres-header {
+        background: linear-gradient(to right, #f08030, #705848); /* Feu + Ténèbres */
+        color: #fff;
+      }
+      
+      .eau-header-insecte-header {
+        background: linear-gradient(to right, #6890f0, #a8b820); /* Eau + Insecte */
+        color: #fff;
+      }
+      
+      .eau-header-normal-header {
+        background: linear-gradient(to right, #6890f0, #a8a878); /* Eau + Normal */
+        color: #fff;
+      }
+      
+      .eau-header-électrik-header {
+        background: linear-gradient(to right, #6890f0, #f8d030); /* Eau + Électrik */
+        color: #fff;
+      }
+      
+      .eau-header-poison-header {
+        background: linear-gradient(to right, #6890f0, #a040a0); /* Eau + Poison */
+        color: #fff;
+      }
+      
+      .eau-header-fée-header {
+        background: linear-gradient(to right, #6890f0, #ee99ac); /* Eau + Fée */
+        color: #fff;
+      }
+      
+      .eau-header-vol-header {
+        background: linear-gradient(to right, #6890f0, #a890f0); /* Eau + Vol */
+        color: #fff;
+      }
+      
+      .eau-header-combat-header {
+        background: linear-gradient(to right, #6890f0, #c03028); /* Eau + Combat */
+        color: #fff;
+      }
+      
+      .eau-header-sol-header {
+        background: linear-gradient(to right, #6890f0, #e0c068); /* Eau + Sol */
+        color: #fff;
+      }
+      
+      .eau-header-roche-header {
+        background: linear-gradient(to right, #6890f0, #b8a038); /* Eau + Roche */
+        color: #fff;
+      }
+      
+      .eau-header-glace-header {
+        background: linear-gradient(to right, #6890f0, #98d8d8); /* Eau + Glace */
+        color: #fff;
+      }
+      
+      .eau-header-acier-header {
+        background: linear-gradient(to right, #6890f0, #b8b8d0); /* Eau + Acier */
+        color: #fff;
+      }
+      
+      .eau-header-psy-header {
+        background: linear-gradient(to right, #6890f0, #f85888); /* Eau + Psy */
+        color: #fff;
+      }
+      
+      .eau-header-spectre-header {
+        background: linear-gradient(to right, #6890f0, #705898); /* Eau + Spectre */
+        color: #fff;
+      }
+      
+      .eau-header-dragon-header {
+        background: linear-gradient(to right, #6890f0, #7038f8); /* Eau + Dragon */
+        color: #fff;
+      }
+      
+      .eau-header-ténèbres-header {
+        background: linear-gradient(to right, #6890f0, #705848); /* Eau + Ténèbres */
+        color: #fff;
+      }
+      
+      .insecte-header-normal-header {
+        background: linear-gradient(to right, #a8b820, #a8a878); /* Insecte + Normal */
+        color: #fff;
+      }
+      
+      .insecte-header-électrik-header {
+        background: linear-gradient(to right, #a8b820, #f8d030); /* Insecte + Électrik */
+        color: #fff;
+      }
+      
+      .insecte-header-poison-header {
+        background: linear-gradient(to right, #a8b820, #a040a0); /* Insecte + Poison */
+        color: #fff;
+      }
+      
+      .insecte-header-fée-header {
+        background: linear-gradient(to right, #a8b820, #ee99ac); /* Insecte + Fée */
+        color: #fff;
+      }
+      
+      .insecte-header-vol-header {
+        background: linear-gradient(to right, #a8b820, #a890f0); /* Insecte + Vol */
+        color: #fff;
+      }
+      
+      .insecte-header-combat-header {
+        background: linear-gradient(to right, #a8b820, #c03028); /* Insecte + Combat */
+        color: #fff;
+      }
+      
+      .insecte-header-sol-header {
+        background: linear-gradient(to right, #a8b820, #e0c068); /* Insecte + Sol */
+        color: #fff;
+      }
+      
+      .insecte-header-roche-header {
+        background: linear-gradient(to right, #a8b820, #b8a038); /* Insecte + Roche */
+        color: #fff;
+      }
+      
+      .insecte-header-glace-header {
+        background: linear-gradient(to right, #a8b820, #98d8d8); /* Insecte + Glace */
+        color: #fff;
+      }
+      
+      .insecte-header-acier-header {
+        background: linear-gradient(to right, #a8b820, #b8b8d0); /* Insecte + Acier */
+        color: #fff;
+      }
+      
+      .insecte-header-psy-header {
+        background: linear-gradient(to right, #a8b820, #f85888); /* Insecte + Psy */
+        color: #fff;
+      }
+      
+      .insecte-header-spectre-header {
+        background: linear-gradient(to right, #a8b820, #705898); /* Insecte + Spectre */
+        color: #fff;
+      }
+      
+      .insecte-header-dragon-header {
+        background: linear-gradient(to right, #a8b820, #7038f8); /* Insecte + Dragon */
+        color: #fff;
+      }
+      
+      .insecte-header-ténèbres-header {
+        background: linear-gradient(to right, #a8b820, #705848); /* Insecte + Ténèbres */
+        color: #fff;
+      }
+      .insecte-header-plante-header {
+        background: linear-gradient(to right, #a8b820, #78c850); /* Insecte + Plante */
+        color: #fff;
+      }
+      
+      
+      .normal-header-électrik-header {
+        background: linear-gradient(to right, #a8a878, #f8d030); /* Normal + Électrik */
+        color: #fff;
+      }
+      
+      .normal-header-poison-header {
+        background: linear-gradient(to right, #a8a878, #a040a0); /* Normal + Poison */
+        color: #fff;
+      }
+      
+      .normal-header-fée-header {
+        background: linear-gradient(to right, #a8a878, #ee99ac); /* Normal + Fée */
+        color: #fff;
+      }
+      
+      .normal-header-vol-header {
+        background: linear-gradient(to right, #a8a878, #a890f0); /* Normal + Vol */
+        color: #fff;
+      }
+      
+      .normal-header-combat-header {
+        background: linear-gradient(to right, #a8a878, #c03028); /* Normal + Combat */
+        color: #fff;
+      }
+      
+      .normal-header-sol-header {
+        background: linear-gradient(to right, #a8a878, #e0c068); /* Normal + Sol */
+        color: #fff;
+      }
+      
+      .normal-header-roche-header {
+        background: linear-gradient(to right, #a8a878, #b8a038); /* Normal + Roche */
+        color: #fff;
+      }
+      
+      .normal-header-glace-header {
+        background: linear-gradient(to right, #a8a878, #98d8d8); /* Normal + Glace */
+        color: #fff;
+      }
+      
+      .normal-header-acier-header {
+        background: linear-gradient(to right, #a8a878, #b8b8d0); /* Normal + Acier */
+        color: #fff;
+      }
+      
+      .normal-header-psy-header {
+        background: linear-gradient(to right, #a8a878, #f85888); /* Normal + Psy */
+        color: #fff;
+      }
+      
+      .normal-header-spectre-header {
+        background: linear-gradient(to right, #a8a878, #705898); /* Normal + Spectre */
+        color: #fff;
+      }
+      
+      .normal-header-dragon-header {
+        background: linear-gradient(to right, #a8a878, #7038f8); /* Normal + Dragon */
+        color: #fff;
+      }
+      
+      .normal-header-ténèbres-header {
+        background: linear-gradient(to right, #a8a878, #705848); /* Normal + Ténèbres */
+        color: #fff;
+      }
+      
+      .électrik-header-poison-header {
+        background: linear-gradient(to right, #f8d030, #a040a0); /* Électrik + Poison */
+        color: #fff;
+      }
+      
+      .électrik-header-fée-header {
+        background: linear-gradient(to right, #f8d030, #ee99ac); /* Électrik + Fée */
+        color: #fff;
+      }
+      
+      .électrik-header-vol-header {
+        background: linear-gradient(to right, #f8d030, #a890f0); /* Électrik + Vol */
+        color: #fff;
+      }
+      
+      .électrik-header-combat-header {
+        background: linear-gradient(to right, #f8d030, #c03028); /* Électrik + Combat */
+        color: #fff;
+      }
+      
+      .électrik-header-sol-header {
+        background: linear-gradient(to right, #f8d030, #e0c068); /* Électrik + Sol */
+        color: #fff;
+      }
+      
+      .électrik-header-roche-header {
+        background: linear-gradient(to right, #f8d030, #b8a038); /* Électrik + Roche */
+        color: #fff;
+      }
+      
+      .électrik-header-glace-header {
+        background: linear-gradient(to right, #f8d030, #98d8d8); /* Électrik + Glace */
+        color: #fff;
+      }
+      
+      .électrik-header-acier-header {
+        background: linear-gradient(to right, #f8d030, #b8b8d0); /* Électrik + Acier */
+        color: #fff;
+      }
+      
+      .électrik-header-psy-header {
+        background: linear-gradient(to right, #f8d030, #f85888); /* Électrik + Psy */
+        color: #fff;
+      }
+      
+      .électrik-header-spectre-header {
+        background: linear-gradient(to right, #f8d030, #705898); /* Électrik + Spectre */
+        color: #fff;
+      }
+      
+      .électrik-header-dragon-header {
+        background: linear-gradient(to right, #f8d030, #7038f8); /* Électrik + Dragon */
+        color: #fff;
+      }
+      
+      .électrik-header-ténèbres-header {
+        background: linear-gradient(to right, #f8d030, #705848); /* Électrik + Ténèbres */
+        color: #fff;
+      }
+      
+      .poison-header-fée-header {
+        background: linear-gradient(to right, #a040a0, #ee99ac); /* Poison + Fée */
+        color: #fff;
+      }
+      
+      .poison-header-vol-header {
+        background: linear-gradient(to right, #a040a0, #a890f0); /* Poison + Vol */
+        color: #fff;
+      }
+      
+      .poison-header-combat-header {
+        background: linear-gradient(to right, #a040a0, #c03028); /* Poison + Combat */
+        color: #fff;
+      }
+      
+      .poison-header-sol-header {
+        background: linear-gradient(to right, #a040a0, #e0c068); /* Poison + Sol */
+        color: #fff;
+      }
+      
+      .poison-header-roche-header {
+        background: linear-gradient(to right, #a040a0, #b8a038); /* Poison + Roche */
+        color: #fff;
+      }
+      
+      .poison-header-glace-header {
+        background: linear-gradient(to right, #a040a0, #98d8d8); /* Poison + Glace */
+        color: #fff;
+      }
+      
+      .poison-header-acier-header {
+        background: linear-gradient(to right, #a040a0, #b8b8d0); /* Poison + Acier */
+        color: #fff;
+      }
+      
+      .poison-header-psy-header {
+        background: linear-gradient(to right, #a040a0, #f85888); /* Poison + Psy */
+        color: #fff;
+      }
+      
+      .poison-header-spectre-header {
+        background: linear-gradient(to right, #a040a0, #705898); /* Poison + Spectre */
+        color: #fff;
+      }
+      
+      .poison-header-dragon-header {
+        background: linear-gradient(to right, #a040a0, #7038f8); /* Poison + Dragon */
+        color: #fff;
+      }
+      
+      .poison-header-ténèbres-header {
+        background: linear-gradient(to right, #a040a0, #705848); /* Poison + Ténèbres */
+        color: #fff;
+      }
+      
+      .fée-header-vol-header {
+        background: linear-gradient(to right, #ee99ac, #a890f0); /* Fée + Vol */
+        color: #fff;
+      }
+      
+      .fée-header-combat-header {
+        background: linear-gradient(to right, #ee99ac, #c03028); /* Fée + Combat */
+        color: #fff;
+      }
+      
+      .fée-header-sol-header {
+        background: linear-gradient(to right, #ee99ac, #e0c068); /* Fée + Sol */
+        color: #fff;
+      }
+      
+      .fée-header-roche-header {
+        background: linear-gradient(to right, #ee99ac, #b8a038); /* Fée + Roche */
+        color: #fff;
+      }
+      
+      .fée-header-glace-header {
+        background: linear-gradient(to right, #ee99ac, #98d8d8); /* Fée + Glace */
+        color: #fff;
+      }
+      
+      .fée-header-acier-header {
+        background: linear-gradient(to right, #ee99ac, #b8b8d0); /* Fée + Acier */
+        color: #fff;
+      }
+      
+      .fée-header-psy-header {
+        background: linear-gradient(to right, #ee99ac, #f85888); /* Fée + Psy */
+        color: #fff;
+      }
+      
+      .fée-header-spectre-header {
+        background: linear-gradient(to right, #ee99ac, #705898); /* Fée + Spectre */
+        color: #fff;
+      }
+      
+      .fée-header-dragon-header {
+        background: linear-gradient(to right, #ee99ac, #7038f8); /* Fée + Dragon */
+        color: #fff;
+      }
+      
+      .fée-header-ténèbres-header {
+        background: linear-gradient(to right, #ee99ac, #705848); /* Fée + Ténèbres */
+        color: #fff;
+      }
+      
+      .vol-header-combat-header {
+        background: linear-gradient(to right, #a890f0, #c03028); /* Vol + Combat */
+        color: #fff;
+      }
+      
+      .vol-header-sol-header {
+        background: linear-gradient(to right, #a890f0, #e0c068); /* Vol + Sol */
+        color: #fff;
+      }
+      
+      .vol-header-roche-header {
+        background: linear-gradient(to right, #a890f0, #b8a038); /* Vol + Roche */
+        color: #fff;
+      }
+      
+      .vol-header-glace-header {
+        background: linear-gradient(to right, #a890f0, #98d8d8); /* Vol + Glace */
+        color: #fff;
+      }
+      
+      .vol-header-acier-header {
+        background: linear-gradient(to right, #a890f0, #b8b8d0); /* Vol + Acier */
+        color: #fff;
+      }
+      
+      .vol-header-psy-header {
+        background: linear-gradient(to right, #a890f0, #f85888); /* Vol + Psy */
+        color: #fff;
+      }
+      
+      .vol-header-spectre-header {
+        background: linear-gradient(to right, #a890f0, #705898); /* Vol + Spectre */
+        color: #fff;
+      }
+      
+      .vol-header-dragon-header {
+        background: linear-gradient(to right, #a890f0, #7038f8); /* Vol + Dragon */
+        color: #fff;
+      }
+      
+      .vol-header-ténèbres-header {
+        background: linear-gradient(to right, #a890f0, #705848); /* Vol + Ténèbres */
+        color: #fff;
+      }
+      
+      .combat-header-sol-header {
+        background: linear-gradient(to right, #c03028, #e0c068); /* Combat + Sol */
+        color: #fff;
+      }
+      
+      .combat-header-roche-header {
+        background: linear-gradient(to right, #c03028, #b8a038); /* Combat + Roche */
+        color: #fff;
+      }
+      
+      .combat-header-glace-header {
+        background: linear-gradient(to right, #c03028, #98d8d8); /* Combat + Glace */
+        color: #fff;
+      }
+      
+      .combat-header-acier-header {
+        background: linear-gradient(to right, #c03028, #b8b8d0); /* Combat + Acier */
+        color: #fff;
+      }
+      
+      .combat-header-psy-header {
+        background: linear-gradient(to right, #c03028, #f85888); /* Combat + Psy */
+        color: #fff;
+      }
+      
+      .combat-header-spectre-header {
+        background: linear-gradient(to right, #c03028, #705898); /* Combat + Spectre */
+        color: #fff;
+      }
+      
+      .combat-header-dragon-header {
+        background: linear-gradient(to right, #c03028, #7038f8); /* Combat + Dragon */
+        color: #fff;
+      }
+      
+      .combat-header-ténèbres-header {
+        background: linear-gradient(to right, #c03028, #705848); /* Combat + Ténèbres */
+        color: #fff;
+      }
+      .dragon-header-sol-header {
+        background: linear-gradient(to right, #7038f8, #e0c068); /* Dragon + Sol */
+        color: #fff;
+      }
+      
+      .ténèbres-header-combat-header {
+        background: linear-gradient(to right, #705848, #c03028); /* Ténèbres + Combat */
+        color: #fff;
+      }
+      
+      .normal-header-plante-header {
+        background: linear-gradient(to right, #a8a878, #78c850); /* Normal + Plante */
+        color: #fff;
+      }
+      
+      .spectre-header-feu-header {
+        background: linear-gradient(to right, #705898, #f08030); /* Spectre + Feu */
+        color: #fff;
+      }
+      
+      .sol-header-électrik-header {
+        background: linear-gradient(to right, #e0c068, #f8d030); /* Sol + Électrik */
+        color: #fff;
+      }
+      
+      .ténèbres-header-acier-header {
+        background: linear-gradient(to right, #705848, #b8b8d0); /* Ténèbres + Acier */
+        color: #fff;
+      }
+      
+      .ténèbres-header-dragon-header {
+        background: linear-gradient(to right, #705848, #7038f8); /* Ténèbres + Dragon */
+        color: #fff;
+      }
+      
+      .insecte-header-feu-header {
+        background: linear-gradient(to right, #a8b820, #f08030); /* Insecte + Feu */
+        color: #fff;
+      }
+      
+      .sol-header-roche-header {
+        background: linear-gradient(to right, #e0c068, #b8a038); /* Sol + Roche */
+        color: #fff;
+      }
+      
+      .sol-header-glace-header {
+        background: linear-gradient(to right, #e0c068, #98d8d8); /* Sol + Glace */
+        color: #fff;
+      }
+      
+      .sol-header-acier-header {
+        background: linear-gradient(to right, #e0c068, #b8b8d0); /* Sol + Acier */
+        color: #fff;
+      }
+      
+      .sol-header-psy-header {
+        background: linear-gradient(to right, #e0c068, #f85888); /* Sol + Psy */
+        color: #fff;
+      }
+      
+      .sol-header-spectre-header {
+        background: linear-gradient(to right, #e0c068, #705898); /* Sol + Spectre */
+        color: #fff;
+      }
+      
+      .sol-header-dragon-header {
+        background: linear-gradient(to right, #e0c068, #7038f8); /* Sol + Dragon */
+        color: #fff;
+      }
+      
+      .sol-header-ténèbres-header {
+        background: linear-gradient(to right, #e0c068, #705848); /* Sol + Ténèbres */
+        color: #fff;
+      }
+      
+      .roche-header-glace-header {
+        background: linear-gradient(to right, #b8a038, #98d8d8); /* Roche + Glace */
+        color: #fff;
+      }
+      
+      .roche-header-acier-header {
+        background: linear-gradient(to right, #b8a038, #b8b8d0); /* Roche + Acier */
+        color: #fff;
+      }
+      
+      .roche-header-psy-header {
+        background: linear-gradient(to right, #b8a038, #f85888); /* Roche + Psy */
+        color: #fff;
+      }
+      
+      .roche-header-spectre-header {
+        background: linear-gradient(to right, #b8a038, #705898); /* Roche + Spectre */
+        color: #fff;
+      }
+      
+      .roche-header-dragon-header {
+        background: linear-gradient(to right, #b8a038, #7038f8); /* Roche + Dragon */
+        color: #fff;
+      }
+      
+      .roche-header-ténèbres-header {
+        background: linear-gradient(to right, #b8a038, #705848); /* Roche + Ténèbres */
+        color: #fff;
+      }
+      .roche-header-sol-header {
+        background: linear-gradient(to right, #b8a038, #e0c068); /* Roche + Sol */
+        color: #fff;
+      }
+      
+      
+      .glace-header-acier-header {
+        background: linear-gradient(to right, #98d8d8, #b8b8d0); /* Glace + Acier */
+        color: #fff;
+      }
+      
+      .glace-header-psy-header {
+        background: linear-gradient(to right, #98d8d8, #f85888); /* Glace + Psy */
+        color: #fff;
+      }
+      
+      .glace-header-spectre-header {
+        background: linear-gradient(to right, #98d8d8, #705898); /* Glace + Spectre */
+        color: #fff;
+      }
+      
+      .glace-header-dragon-header {
+        background: linear-gradient(to right, #98d8d8, #7038f8); /* Glace + Dragon */
+        color: #fff;
+      }
+      
+      .glace-header-ténèbres-header {
+        background: linear-gradient(to right, #98d8d8, #705848); /* Glace + Ténèbres */
+        color: #fff;
+      }
+      .acier-header-combat-header {
+        background: linear-gradient(to right, #b8b8d0, #c03028); /* Acier + Combat */
+        color: #fff;
+      }
+      
+      .dragon-header-feu-header {
+        background: linear-gradient(to right, #7038f8, #f08030); /* Dragon + Feu */
+        color: #fff;
+      }
+      
+      .dragon-header-glace-header {
+        background: linear-gradient(to right, #7038f8, #98d8d8); /* Dragon + Glace */
+        color: #fff;
+      }
+      
+      .ténèbres-header-psy-header {
+        background: linear-gradient(to right, #705848, #f85888); /* Ténèbres + Psy */
+        color: #fff;
+      }
+      
+      .poison-header-eau-header {
+        background: linear-gradient(to right, #a040a0, #6890f0); /* Poison + Eau */
+        color: #fff;
+      }
+      
+      .électrik-header-normal-header {
+        background: linear-gradient(to right, #f8d030, #a8a878); /* Électrik + Normal */
+        color: #fff;
+      }
+      .psy-header-acier-header {
+        background: linear-gradient(to right, #f85888, #b8b8d0); /* Psy + Acier */
+        color: #fff;
+      }
+      
+      .roche-header-poison-header {
+        background: linear-gradient(to right, #b8a038, #a040a0); /* Roche + Poison */
+        color: #fff;
+      }
+      
+      .roche-header-feu-header {
+        background: linear-gradient(to right, #b8a038, #f08030); /* Roche + Feu */
+        color: #fff;
+      }
+      
+      .vol-header-eau-header {
+        background: linear-gradient(to right, #a890f0, #6890f0); /* Vol + Eau */
+        color: #fff;
+      }
+      
+      .ténèbres-header-fée-header {
+        background: linear-gradient(to right, #705848, #ee99ac); /* Ténèbres + Fée */
+        color: #fff;
+      }
+      
+      .ténèbres-header-normal-header {
+        background: linear-gradient(to right, #705848, #a8a878); /* Ténèbres + Normal */
+        color: #fff;
+      }
+      
+      .glace-header-insecte-header {
+        background: linear-gradient(to right, #98d8d8, #a8b820); /* Glace + Insecte */
+        color: #fff;
+      }
+      
+      .dragon-header-spectre-header {
+        background: linear-gradient(to right, #7038f8, #705898); /* Dragon + Spectre */
+        color: #fff;
+      }
+      
+      .combat-header-vol-header {
+        background: linear-gradient(to right, #c03028, #a890f0); /* Combat + Vol */
+        color: #fff;
+      }
+      .roche-header-fée-header {
+        background: linear-gradient(to right, #b8a038, #ee99ac); /* Roche + Fée */
+        color: #fff;
+      }
+      
+      .spectre-header-plante-header {
+        background: linear-gradient(to right, #705898, #78c850); /* Spectre + Plante */
+        color: #fff;
+      }
+      
+      .poison-header-feu-header {
+        background: linear-gradient(to right, #a040a0, #f08030); /* Poison + Feu */
+        color: #fff;
+      }
+      
+      .spectre-header-sol-header {
+        background: linear-gradient(to right, #705898, #e0c068); /* Spectre + Sol */
+        color: #fff;
+      }
+      
+      .spectre-header-fée-header {
+        background: linear-gradient(to right, #705898, #ee99ac); /* Spectre + Fée */
+        color: #fff;
+      }
+      
+      .dragon-header-combat-header {
+        background: linear-gradient(to right, #7038f8, #c03028); /* Dragon + Combat */
+        color: #fff;
+      }
+      
+      .acier-header-psy-header {
+        background: linear-gradient(to right, #b8b8d0, #f85888); /* Acier + Psy */
+        color: #fff;
+      }
+      
+      .acier-header-spectre-header {
+        background: linear-gradient(to right, #b8b8d0, #705898); /* Acier + Spectre */
+        color: #fff;
+      }
+      
+      .acier-header-dragon-header {
+        background: linear-gradient(to right, #b8b8d0, #7038f8); /* Acier + Dragon */
+        color: #fff;
+      }
+      .psy-header-normal-header {
+        background: linear-gradient(to right, #f85888, #a8a878); /* Psy + Normal */
+        color: #fff;
+      }
+      .poison-header-normal-header {
+        background: linear-gradient(to right, #a040a0, #a8a878); /* Poison + Normal */
+        color: #fff;
+      }
+      
+      .sol-header-plante-header {
+        background: linear-gradient(to right, #e0c068, #78c850); /* Sol + Plante */
+        color: #fff;
+      }
 
-        .pokemon-card-body {
-            padding: 10px;
-            background: #fff;
+      .dragon-header-eau-header {
+        background: linear-gradient(to right, #7038f8, #6890f0); /* Dragon + Eau */
+        color: #fff;
+      }
+      
+      .sol-header-combat-header {
+        background: linear-gradient(to right, #e0c068, #c03028); /* Sol + Combat */
+        color: #fff;
+      }
+      
+      .combat-header-électrik-header {
+        background: linear-gradient(to right, #c03028, #f8d030); /* Combat + électrik */
+        color: #fff;
+      }
+      
+      .ténèbres-header-sol-header {
+        background: linear-gradient(to right, #705848, #e0c068); /* Ténèbres + Sol */
+        color: #fff;
+      }
+      
+      
+      .acier-header-poison-header {
+        background: linear-gradient(to right, #b8b8d0, #a040a0); /* Acier + Poison */
+        color: #fff;
+      }
+      
+      .dragon-header-normal-header {
+        background: linear-gradient(to right, #7038f8, #a8a878); /* Dragon + Normal */
+        color: #fff;
+      }
+      
+      .ténèbres-header-plante-header {
+        background: linear-gradient(to right, #705848, #78c850); /* Ténèbres + Plante */
+        color: #fff;
+      }
+      
+      .sol-header-normal-header {
+        background: linear-gradient(to right, #e0c068, #a8a878); /* Sol + Normal */
+        color: #fff;
+      }
+      
+      .combat-header-poison-header {
+        background: linear-gradient(to right, #c03028, #a040a0); /* Combat + Poison */
+        color: #fff;
+      }
+      
+      .ténèbres-header-poison-header {
+        background: linear-gradient(to right, #705848, #a040a0); /* Ténèbres + Poison */
+        color: #fff;
+      }
+      
+      .acier-header-ténèbres-header {
+        background: linear-gradient(to right, #b8b8d0, #705848); /* Acier + Ténèbres */
+        color: #fff;
+      }
+      
+      .psy-header-spectre-header {
+        background: linear-gradient(to right, #f85888, #705898); /* Psy + Spectre */
+        color: #fff;
+      }
+      .psy-header-fée-header {
+        background: linear-gradient(to right, #f85888, #ee99ac); /* Psy + Fée */
+        color: #fff;
+      }
 
-            img {
-                display: block;
-                max-width: 100%;
-                height: auto;
-                margin: 0 auto 10px;
-            }
-
-            .pokemon-info {
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 10px;
-
-                .pokemon-type {
-                    background-color: #3b4cca;
-                    color: #fff;
-                    padding: 5px 10px;
-                    border-radius: 5px;
-                }
-
-                .pokemon-id {
-                    color: #3b4cca;
-                    font-weight: bold;
-                }
-            }
+      .dragon-header-vol-header {
+        background: linear-gradient(to right, #7038f8, #a890f0); /* Dragon + Vol */
+        color: #fff;
+      }
+      .électrik-header-eau-header {
+        background: linear-gradient(to right, #f8d030, #6890f0); /* Électrik + Eau */
+        color: #fff;
+      }
+      .psy-header-vol-header {
+        background: linear-gradient(to right, #f85888, #a890f0); /* Psy + Vol */
+        color: #fff;
+      }
+      .roche-header-électrik-header {
+        background: linear-gradient(to right, #b8a038, #f8d030); /* Roche + Électrik */
+        color: #fff;
+      }
+      
+      .roche-header-eau-header {
+        background: linear-gradient(to right, #b8a038, #6890f0); /* Roche + Eau */
+        color: #fff;
+      }
+      .roche-header-vol-header {
+        background: linear-gradient(to right, #b8a038, #a890f0); /* Roche + Vol */
+        color: #fff;
+      }
+      .glace-header-vol-header {
+        background: linear-gradient(to right, #98d8d8, #a890f0); /* Glace + Vol */
+        color: #fff;
+      }
+                  
+      
+      .psy-header-dragon-header {
+        background: linear-gradient(to right, #f85888, #7038f8); /* Psy + Dragon */
+        color: #fff;
+      }
+      
+      .psy-header-ténèbres-header {
+        background: linear-gradient(to right, #f85888, #705848); /* Psy + Ténèbres */
+        color: #fff;
+      }
+      .ténèbres-header-glace-header {
+        background: linear-gradient(to right, #705848, #98d8d8); /* Ténèbres + Glace */
+        color: #fff;
+      }
+      
+      .glace-header-sol-header {
+        background: linear-gradient(to right, #98d8d8, #e0c068); /* Glace + Sol */
+        color: #fff;
+      }
+      
+      .acier-header-vol-header {
+        background: linear-gradient(to right, #b8b8d0, #a890f0); /* Acier + Vol */
+        color: #fff;
+      }
+      .eau-header-plante-header {
+        background: linear-gradient(to right, #6890f0, #78c850); /* Eau + Plante */
+        color: #fff;
+      }
+      
+      .insecte-header-eau-header {
+        background: linear-gradient(to right, #a8b820, #6890f0); /* Insecte + Eau */
+        color: #fff;
+      }
+      
+      .ténèbres-header-spectre-header {
+        background: linear-gradient(to right, #705848, #705898); /* Ténèbres + Spectre */
+        color: #fff;
+      }
+      .roche-header-insecte-header {
+        background: linear-gradient(to right, #b8a038, #a8b820); /* Roche + Insecte */
+        color: #fff;
+      }
+      
+      .glace-header-eau-header {
+        background: linear-gradient(to right, #98d8d8, #6890f0); /* Glace + Eau */
+        color: #fff;
+      }
+      
+      .dragon-header-psy-header {
+        background: linear-gradient(to right, #7038f8, #f85888); /* Dragon + Psy */
+        color: #fff;
+      }
+      
+      .normal-header-eau-header {
+        background: linear-gradient(to right, #a8a878, #6890f0); /* Normal + Eau */
+        color: #fff;
+      }
+      .spectre-header-vol-header {
+        background: linear-gradient(to right, #705898, #a890f0); /* Spectre + Vol */
+        color: #fff;
+      }
+      
+      .poison-header-insecte-header {
+        background: linear-gradient(to right, #a040a0, #a8b820); /* Poison + Insecte */
+        color: #fff;
+      }
+      
+      .psy-header-combat-header {
+        background: linear-gradient(to right, #f85888, #c03028); /* Psy + Combat */
+        color: #fff;
+      }
+      
+      .psy-header-feu-header {
+        background: linear-gradient(to right, #f85888, #f08030); /* Psy + Feu */
+        color: #fff;
+      }
+      
+      .acier-header-roche-header {
+        background: linear-gradient(to right, #b8b8d0, #b8a038); /* Acier + Roche */
+        color: #fff;
+      }
+      
+      .acier-header-fée-header {
+        background: linear-gradient(to right, #b8b8d0, #ee99ac); /* Acier + Fée */
+        color: #fff;
+      }
+      
+      .roche-header-plante-header {
+        background: linear-gradient(to right, #b8a038, #78c850); /* Roche + Plante */
+        color: #fff;
+      }
+      
+      .ténèbres-header-feu-header {
+        background: linear-gradient(to right, #705848, #f08030); /* Ténèbres + Feu */
+        color: #fff;
+      }
+      
+      .psy-header-plante-header {
+        background: linear-gradient(to right, #f85888, #78c850); /* Psy + Plante */
+        color: #fff;
+      }
+      
+      .spectre-header-dragon-header {
+        background: linear-gradient(to right, #705898, #7038f8); /* Spectre + Dragon */
+        color: #fff;
+      }
+      .spectre-header-poison-header {
+        background: linear-gradient(to right, #705898, #a040a0); /* Spectre + Poison */
+        color: #fff;
+      }
+      .eau-header-électrik-header {
+        background: linear-gradient(to right, #6890f0, #f8d030); /* Eau + Électrik */
+        color: #fff;
+      }
+      
+      .ténèbres-header-vol-header {
+        background: linear-gradient(to right, #705848, #a890f0); /* Ténèbres + Vol */
+        color: #fff;
+      }
+      
+      .acier-header-sol-header {
+        background: linear-gradient(to right, #b8b8d0, #e0c068); /* Acier + Sol */
+        color: #fff;
+      }
+      
+      .sol-header-vol-header {
+        background: linear-gradient(to right, #e0c068, #a890f0); /* Sol + Vol */
+        color: #fff;
+      }
+      
+      .spectre-header-ténèbres-header {
+        background: linear-gradient(to right, #705898, #705848); /* Spectre + Ténèbres */
+        color: #fff;
+      }
+      
+      .dragon-header-ténèbres-header {
+        background: linear-gradient(to right, #7038f8, #705848); /* Dragon + Ténèbres */
+        color: #fff;
+      }
+      
+      /* Ajoutez d'autres classes pour les autres types de Pokémon */
+      
+  
+      .pokemon-type-buttons {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+  
+        .pokemon-type-button {
+          padding: 5px 10px;
+          border-radius: 5px;
+          margin: 0 5px;
+          cursor: default; /* Empêche le curseur de changer au survol */
+  
+          &.plante {
+            background-color: #78c850;
+            color: #fff;
+          }
+  
+          &.feu {
+            background-color: #f08030;
+            color: #fff;
+          }
+  
+          &.eau {
+            background-color: #6890f0;
+            color: #fff;
+          }
+  
+          &.insecte {
+            background-color: #a8b820;
+            color: #fff;
+          }
+  
+          &.normal {
+            background-color: #a8a878;
+            color: #fff;
+          }
+  
+          &.électrik {
+            background-color: #f8d030;
+            color: #fff;
+          }
+  
+          &.poison {
+            background-color: #a040a0;
+            color: #fff;
+          }
+  
+          &.fée {
+            background-color: #ee99ac;
+            color: #fff;
+          }
+  
+          &.vol {
+            background-color: #a890f0;
+            color: #fff;
+          }
+  
+          &.combat {
+            background-color: #c03028;
+            color: #fff;
+          }
+  
+          &.sol {
+            background-color: #e0c068;
+            color: #fff;
+          }
+  
+          &.roche {
+            background-color: #b8a038;
+            color: #fff;
+          }
+  
+          &.glace {
+            background-color: #98d8d8;
+            color: #fff;
+          }
+  
+          &.acier {
+            background-color: #b8b8d0;
+            color: #fff;
+          }
+  
+          &.psy {
+            background-color: #f85888;
+            color: #fff;
+          }
+  
+          &.spectre {
+            background-color: #705898;
+            color: #fff;
+          }
+  
+          &.dragon {
+            background-color: #7038f8;
+            color: #fff;
+          }
+  
+          &.ténèbres {
+            background-color: #705848;
+            color: #fff;
+          }
         }
+      }
     }
-
+  
     &.compact {
-        .pokemon-card-body {
-            padding: 5px;
-            background: #fff;
-
-            img {
-                display: block;
-                max-width: 100%;
-                height: auto;
-                margin: 0 auto;
-            }
-
-            .pokemon-info {
-                display: none;
-            }
+      .pokemon-card-body {
+        padding: 5px;
+        background: #fff;
+  
+        img {
+          display: block;
+          max-width: 100%;
+          height: auto;
+          margin: 0 auto;
         }
-
-        .pokemon-card-header,
-        .pokemon-card-footer {
-            display: none;
+  
+        .pokemon-info {
+          display: none;
         }
+      }
+  
+      .pokemon-card-header,
+      .pokemon-card-footer {
+        display: none;
+      }
     }
-}
-
+  }
+  
