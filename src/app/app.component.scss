@@ -1,78 +1,67 @@
-$navbar-height: 60px; // Hauteur de la barre de navigation
-
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: $navbar-height;
-  background-color: #333; // Couleur de fond de la barre de navigation
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  z-index: 1000; // Assure que la barre de navigation est au-dessus du contenu
-
-  .navbar-logo {
-    .logo {
-      height: $navbar-height;
-      width: auto;
-    }
+    position: fixed; /* Position fixée */
+    top: 0; /* Position en haut de la page */
+    left: 0;
+    width: 100%; /* Largeur de 100% */
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    z-index: 1000; /* Assure que la barre de navigation soit au-dessus du contenu */
   }
-
+  
+  .navbar-logo img {
+    width: 50px; /* Taille de votre logo */
+  }
+  
   .navbar-menu {
-    .menu-items {
+    ul.menu-items {
       list-style-type: none;
-      margin: 0;
       padding: 0;
+      margin: 0;
       display: flex;
       align-items: center;
-
+  
       li {
-        margin: 0 10px;
-
+        margin: 0 5px;
+  
         a {
           color: #fff;
           text-decoration: none;
-          font-weight: bold;
+          padding: 5px 10px;
           transition: color 0.3s;
-
+  
           &:hover {
-            color: #f8d030; // Couleur de survol
+            color: #ffcc00;
           }
         }
-      }
-    }
-
-    .auth-section {
-      display: none; // Caché par défaut
-
-      li {
-        margin: 0 10px;
-
-        a {
-          color: #fff;
-          text-decoration: none;
+  
+        .separator {
+          color: #999;
+          margin: 0 5px;
+        }
+  
+        &.active a {
           font-weight: bold;
-          transition: color 0.3s;
-
-          &:hover {
-            color: #f8d030; // Couleur de survol
-          }
         }
       }
     }
   }
-
-  // Media query pour la section d'authentification
-  @media (max-width: 768px) {
-    .auth-section {
-      display: flex; // Affichage en ligne sur les appareils mobiles
-    }
+  
+  .content {
+    margin-top: 60px; /* Ajustez la marge supérieure pour éviter que le contenu ne soit caché sous la barre de navigation */
   }
-}
+  
 
-.content {
-  margin-top: $navbar-height; // Pour éviter que le contenu ne soit caché sous la barre de navigation
-  padding: 20px; // Espacement du contenu principal
-}
+  body {
+    overflow: hidden; /* Masque la barre de défilement */
+  }
+  
+  .content {
+    margin-top: 60px; /* Ajustez si nécessaire pour éviter le chevauchement avec la barre de navigation */
+    overflow-y: auto; /* Permet le défilement vertical du contenu */
+    height: calc(100vh - 60px); /* Calcule la hauteur maximale pour le défilement du contenu */
+  }
+  

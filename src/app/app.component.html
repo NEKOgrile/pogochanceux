@@ -4,21 +4,24 @@
     </div>
     <nav class="navbar-menu">
       <ul class="menu-items">
-        <li><a href="#">Home</a></li>
-        <li><a [routerLink]="['/chanceux']">Chanceux</a></li>
-        <li><a [routerLink]="['/shiny']">Shiny</a></li>
-        <li><a [routerLink]="['/obscure']">Obscure</a></li>
-        <li><a [routerLink]="['/Profil']">Profil</a></li>
-      </ul>
-      <!-- Pour l'affichage en cas de non connecté -->
-      <ul class="menu-items auth-section">
-        <li><a href="#">Login</a></li>
-        <li><a href="#">Register</a></li>
+        <li><a routerLink="/" routerLinkActive="active">Home</a></li>
+        <li><span class="separator">|</span></li>
+        <li><a routerLink="/chanceux" routerLinkActive="active">Chanceux</a></li>
+        <li><a routerLink="/shiny" routerLinkActive="active">Shiny</a></li>
+        <li><a routerLink="/obscure" routerLinkActive="active">Obscure</a></li>
+        <li><span class="separator">|</span></li>
+        <li><a *ngIf="isLoggedIn; else loginRegisterLink" routerLink="/profile">{{ username }}</a></li>
+        <ng-template #loginRegisterLink>
+          <li><a routerLink="/login">Login</a></li>
+          <li><a routerLink="/register">Register</a></li>
+        </ng-template>
+        <li class="separator"></li>
+        <li *ngIf="isLoggedIn"><a (click)="logout()">Logout</a></li>
       </ul>
     </nav>
   </div>
+  
   <div class="content">
-    <!-- Le contenu principal de votre site -->
+    <router-outlet></router-outlet>
   </div>
   
-<router-outlet></router-outlet>
