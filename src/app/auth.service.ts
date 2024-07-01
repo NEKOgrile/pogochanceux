@@ -51,4 +51,17 @@ export class AuthService {
   getUsername(): string | null {
     return typeof localStorage !== 'undefined' ? localStorage.getItem('username') : null;
   }
+
+  getUserId(): any {
+    if (typeof localStorage !== 'undefined') {
+      return this.http.post(`${this.apiUrl}/select-id-user`, { user_name: localStorage.getItem('username') });
+    } else {
+      return null;
+    }
+  }
+
+  addPokemonToCollection(userId: any, pokemonId: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/select-pokemon`, { user_id: userId, pokemon_id: pokemonId });
+  }
+
 }
