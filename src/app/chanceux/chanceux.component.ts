@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../auth.service';
 
 interface Pokemon {
   id: string;
@@ -48,14 +49,21 @@ export class ChanceuxComponent implements OnInit {
   }
 
   onPokemonClicked(event: any) {
-    console.log(`Pokemon ID ${event.id} de type ${event.primaryType} cliqué`);
+    if (this.authService.isLoggedIn()) {
+      console.log(`User is logged in. Pokemon ID ${event.id} clicked.`);
+      this.clickedPokemonId = event.id;
+    } else {
+      console.log(`User is not logged in. Pokemon ID ${event.id} clicked.`);
+      this.showLoginPopup();
+    }
   }
 
-    // Fonction pour formater l'URL de l'image du Pokémon
-    private formatImageUrl(id: number): string {
-      const baseUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
-      // Ne pas ajouter de zéro devant le numéro de l'ID
-      return `${baseUrl}${id}.png`;
-    }
+  showLoginPopup() {
+    alert("Please log in to interact with Pokémon.");
+  }
 
+  private formatImageUrl(id: number): string {
+    const baseUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
+    return `${baseUrl}${id}.png`;
+  }
 }
