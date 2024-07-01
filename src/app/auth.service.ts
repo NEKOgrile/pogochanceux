@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, BehaviorSubject, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -66,9 +67,11 @@ export class AuthService {
 
 
 
-  getUserPokemons(userId: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/get-user-pokemon`, { user_id: userId }).pipe(
-      map((response: any) => response.pokemon_ids)
-    );
+  getUserPokemons(): any {
+    if (typeof localStorage !== 'undefined') {
+      return this.http.post(`${this.apiUrl}/select-user-pokemon`, { user_id: 5 });
+    } else {
+      return null;
+    }
   }
 }

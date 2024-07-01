@@ -34,13 +34,13 @@ export class ChanceuxComponent implements OnInit {
         tap(response => console.log('Réponse du service getUserId :', response))
       ).subscribe(
         (response: any) => {
-          this.userId = response;
+          this.userId = response.id_user;
           console.log('ID de l\'utilisateur = ', this.userId);
 
-          this.authService.getUserPokemons(this.userId).subscribe(
-            (pokemonIds: string) => {
-              this.userPokemonIds = pokemonIds ? pokemonIds.split(',').map(id => parseInt(id, 10)) : [];
-              this.applyLuckyClassToPokemons();
+          this.authService.getUserPokemons().subscribe(
+            (data: any) => {
+              this.userPokemonIds = data.pokemon_ids; // Mettre à jour les IDs des Pokémon
+              this.applyLuckyClassToPokemons(); // Appliquer la classe CSS aux Pokémon chanceux
             },
             (error: HttpErrorResponse) => {
               console.error('Erreur lors de la récupération des Pokémon de l\'utilisateur :', error);
@@ -118,6 +118,7 @@ export class ChanceuxComponent implements OnInit {
       }
     });
   }
+  
 
   private formatImageUrl(id: string): string {
     const baseUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
