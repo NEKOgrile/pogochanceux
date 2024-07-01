@@ -1,21 +1,22 @@
 <div class="container mt-5">
-  <div class="row mb-4">
-    <div class="col text-center button-group">
-      <button class="btn" (click)="setColumns(3)">3 par ligne</button>
-      <button class="btn" (click)="setColumns(4)">4 par ligne</button>
-      <button class="btn" (click)="setColumns(6)">6 par ligne</button>
-    </div>
-  </div>
+    <div class="row mb-4">
+      <div class="col text-center button-group">
+        <button class="btn" (click)="setColumns(3)">3 par ligne</button>
+        <button class="btn" (click)="setColumns(4)">4 par ligne</button>
+        <button class="btn" (click)="setColumns(6)">6 par ligne</button>
 
-  <div class="row">
-    <div *ngFor="let pokemon of pokemons" [ngClass]="colClass">
-      <app-pokemon-card 
-        [pokemon]="pokemon" 
-        type="Chanceux"
-        [displayMode]="displayMode"
-        [isClicked]="clickedPokemonId === pokemon.id"
-        (pokemonClicked)="onPokemonClicked($event)">
-      </app-pokemon-card>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div *ngFor="let pokemon of pokemons" [ngClass]="colClass">
+        <app-pokemon-card 
+          [pokemon]="pokemon" 
+          type="Chanceux"
+          [displayMode]="displayMode"
+          (pokemonClicked)="onPokemonClicked($event)">
+        </app-pokemon-card>
+      </div>
     </div>
   </div>
-</div>
+  

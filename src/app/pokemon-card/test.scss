@@ -1,0 +1,112 @@
+.pokemon-card {
+  border: 2px solid;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.2s;
+  margin: 10px;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+
+  &.clicked {
+    
+      background-color: #f8d030;
+    
+  }
+
+
+
+  &.default {
+
+
+    .pokemon-card-header,
+    .pokemon-card-footer {
+
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      font-size: 1.2em;
+      font-weight: bold;
+      border-bottom: 2px solid #000;
+    }
+
+    .pokemon-card-body {
+      padding: 10px;
+      background: #fff;
+
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto 10px;
+      }
+
+      .pokemon-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+
+        .pokemon-types {
+          display: flex;
+          gap: 5px;
+
+          .pokemon-type {
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            text-transform: uppercase;
+          }
+        }
+
+        .pokemon-id {
+          color: #3b4cca;
+          font-weight: bold;
+        }
+      }
+    }
+
+    /* Ajoutez d'autres classes pour les autres types de Pokémon */
+
+
+    .pokemon-type-buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+
+      .pokemon-type-button {
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin: 0 5px;
+        cursor: default;
+        /* Empêche le curseur de changer au survol */
+
+      }
+    }
+  }
+
+
+  &.compact {
+    .pokemon-card-body {
+      padding: 10px;
+      background: #fff;
+
+
+
+
+    }
+
+    img {
+      display: block;
+      margin: center;
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
+    }
+
+
+  }
+
+}
