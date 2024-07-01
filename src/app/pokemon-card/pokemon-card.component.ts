@@ -9,7 +9,7 @@ export class PokemonCardComponent {
   @Input() pokemon: any;
   @Input() type!: string;
   @Input() displayMode: string = 'default';
-  @Input() isClicked: boolean = false; // Ajoutez cette ligne
+  @Input() isClicked: boolean = false;
   @Output() pokemonClicked = new EventEmitter<any>();
 
   constructor() {}

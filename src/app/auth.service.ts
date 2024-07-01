@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -64,4 +64,11 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/select-pokemon`, { user_id: userId, pokemon_id: pokemonId });
   }
 
+
+
+  getUserPokemons(userId: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/get-user-pokemon`, { user_id: userId }).pipe(
+      map((response: any) => response.pokemon_ids)
+    );
+  }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../auth.service';
-import { tap } from 'rxjs/operators'; // Importer tap depuis rxjs/operators
+import { tap } from 'rxjs/operators';
 
 interface Pokemon {
   id: string;
@@ -9,7 +9,6 @@ interface Pokemon {
   primaryType: string;
   secondaryType: string | null;
   imageUrl: string;
-  
 }
 
 @Component({
@@ -23,11 +22,36 @@ export class ChanceuxComponent implements OnInit {
   displayMode: string = 'default';
   pokemons: Pokemon[] = [];
   clickedPokemonId: string | null = null;
+  userPokemonIds: number[] = [];
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.loadPokemonData();
+
+    if (this.authService.isLoggedIn()) {
+      this.authService.getUserId().pipe(
+        tap(response => console.log('Réponse du service getUserId :', response))
+      ).subscribe(
+        (response: any) => {
+          this.userId = response;
+          console.log('ID de l\'utilisateur = ', this.userId);
+
+          this.authService.getUserPokemons(this.userId).subscribe(
+            (pokemonIds: string) => {
+              this.userPokemonIds = pokemonIds ? pokemonIds.split(',').map(id => parseInt(id, 10)) : [];
+              this.applyLuckyClassToPokemons();
+            },
+            (error: HttpErrorResponse) => {
+              console.error('Erreur lors de la récupération des Pokémon de l\'utilisateur :', error);
+            }
+          );
+        },
+        (error: HttpErrorResponse) => {
+          console.error('Erreur lors de la récupération de l\'ID de l\'utilisateur :', error);
+        }
+      );
+    }
   }
 
   loadPokemonData() {
@@ -42,13 +66,13 @@ export class ChanceuxComponent implements OnInit {
         }));
 
         console.log('Pokemons chargés :', this.pokemons);
+        this.applyLuckyClassToPokemons();
       });
   }
 
   setColumns(count: number) {
     this.colClass = `col-md-${12 / count}`;
     this.displayMode = (count === 6) ? 'compact' : 'default';
-    
   }
 
   onPokemonClicked(event: any): void {
@@ -56,30 +80,27 @@ export class ChanceuxComponent implements OnInit {
       console.log(`User is logged in. Pokemon ID ${event.id} clicked.`);
       this.clickedPokemonId = event.id;
 
-      // Récupérer l'ID de l'utilisateur
       this.authService.getUserId().pipe(
         tap(response => console.log('Réponse du service getUserId :', response))
       ).subscribe(
         (response: any) => {
-          this.userId = response.id_user; // Supposant que la réponse contient un champ `id_user`
+          this.userId = response.id_user; // Utilisation de response.id_user pour récupérer l'ID utilisateur
           console.log('ID de l\'utilisateur = ', this.userId);
 
-          // Ajouter le Pokémon à la collection de l'utilisateur connecté
           this.authService.addPokemonToCollection(this.userId, parseInt(event.id, 10))
             .subscribe(
-              () => {
+              (response: any) => {
                 console.log(`Pokemon ID ${event.id} ajouté à la collection de l'utilisateur.`);
-                // Mettre à jour l'affichage si nécessaire
+                this.userPokemonIds.push(parseInt(event.id, 10));
+                this.applyLuckyClassToPokemons();
               },
-              (error: HttpErrorResponse) => { // Spécifier le type HttpErrorResponse si nécessaire
+              (error: HttpErrorResponse) => {
                 console.error('Erreur lors de l\'ajout du Pokémon :', error);
-                // Gérer les erreurs ici
               }
             );
         },
-        (error: HttpErrorResponse) => { // Spécifier le type HttpErrorResponse si nécessaire
+        (error: HttpErrorResponse) => {
           console.error('Erreur lors de la récupération de l\'ID de l\'utilisateur :', error);
-          // Gérer les erreurs ici
         }
       );
 
@@ -89,15 +110,25 @@ export class ChanceuxComponent implements OnInit {
     }
   }
 
+  applyLuckyClassToPokemons(): void {
+    this.userPokemonIds.forEach(pokemonId => {
+      const pokemonElement = document.getElementById(`pokemon-${pokemonId}`);
+      if (pokemonElement) {
+        pokemonElement.classList.add('lucky-pokemon');
+      }
+    });
+  }
 
-  
   private formatImageUrl(id: string): string {
     const baseUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
     return `${baseUrl}${id}.png`;
   }
 
   private showLoginPopup() {
-    // Implémentez votre logique pour afficher une popup de connexion
     alert('Please log in to select this Pokemon.');
+  }
+
+  parseId(id: string): number {
+    return parseInt(id, 10);
   }
 }
