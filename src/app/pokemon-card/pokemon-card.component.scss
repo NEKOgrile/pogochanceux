@@ -9,6 +9,20 @@
     transform: scale(1.05);
   }
 
+
+
+  &.clicked {
+    .pokemon-card-body,
+    .pokemon-card-footer {
+      background: url('https://i.ibb.co/48r235H/gold-texture.png') center center no-repeat !important;
+      background-size: cover;
+      
+    }
+
+  }
+
+
+
   &.default {
 
 

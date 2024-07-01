@@ -1,4 +1,4 @@
-<div class="pokemon-card" [ngClass]="displayMode" (click)="onCardClick()">
+<div class="pokemon-card" [ngClass]="{ 'clicked': isClicked, 'default': displayMode === 'default' }" (click)="onCardClick()">
   <div class="pokemon-card-header" *ngIf="displayMode === 'default'" [ngClass]="getHeaderClass()">
     {{ pokemon.name }}
   </div>
@@ -7,11 +7,12 @@
     <div class="pokemon-info" *ngIf="displayMode === 'default'">
       <span class="pokemon-id">ID: {{ pokemon.id }}</span>
     </div>
+    <div class="pokemon-type-buttons" *ngIf="displayMode === 'default'">
+      <button class="pokemon-type-button" *ngIf="pokemon.primaryType" [ngClass]="pokemon.primaryType.toLowerCase()">{{ pokemon.primaryType }}</button>
+      <button class="pokemon-type-button" *ngIf="pokemon.secondaryType" [ngClass]="pokemon.secondaryType.toLowerCase()">{{ pokemon.secondaryType }}</button>
+    </div>
   </div>
 
   <!-- Ajout des boutons pour les types -->
-  <div class="pokemon-type-buttons" *ngIf="displayMode === 'default'">
-    <button class="pokemon-type-button" *ngIf="pokemon.primaryType" [ngClass]="pokemon.primaryType.toLowerCase()">{{ pokemon.primaryType }}</button>
-    <button class="pokemon-type-button" *ngIf="pokemon.secondaryType" [ngClass]="pokemon.secondaryType.toLowerCase()">{{ pokemon.secondaryType }}</button>
-  </div>
+  
 </div>
