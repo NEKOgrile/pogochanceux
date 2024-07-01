@@ -8,9 +8,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class PokemonCardComponent {
   @Input() pokemon: any;
   @Input() type!: string;
-  @Input() displayMode: string = 'default'; // Ajoutez cette ligne
+  @Input() displayMode: string = 'default';
+  @Input() isClicked: boolean = false; // Ajoutez cette ligne
   @Output() pokemonClicked = new EventEmitter<any>();
-  
 
   constructor() {}
 
@@ -53,5 +53,4 @@ export class PokemonCardComponent {
       return '';
     }
   }
-  
 }

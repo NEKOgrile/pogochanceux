@@ -1,3 +1,16 @@
+
+
+.clicked {
+
+  .pokemon-card-body,
+  .pokemon-card-footer {
+    background: url('https://i.ibb.co/48r235H/gold-texture.png') center center no-repeat !important;
+    background-size: cover !important;
+  }
+
+  
+}
+
 .pokemon-card {
   border: 2px solid;
   border-radius: 15px;
@@ -8,6 +21,12 @@
   &:hover {
     transform: scale(1.05);
   }
+
+
+
+
+
+
 
   &.default {
 
@@ -1666,6 +1685,7 @@
 
     img {
       display: block;
+      margin: center;
       max-width: 100%;
       height: auto;
       margin: 0 auto;

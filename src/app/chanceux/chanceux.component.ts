@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../auth.service'; // Assurez-vous d'importer correctement votre service d'authentification
 
 interface Pokemon {
   id: string;
@@ -18,8 +19,9 @@ export class ChanceuxComponent implements OnInit {
   colClass: string = 'col-md-4';
   displayMode: string = 'default';
   pokemons: Pokemon[] = [];
+  clickedPokemonId: string | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.loadPokemonData();
@@ -43,18 +45,26 @@ export class ChanceuxComponent implements OnInit {
   setColumns(count: number) {
     this.colClass = `col-md-${12 / count}`;
     this.displayMode = (count === 6) ? 'compact' : 'default';
-    console.log(this.displayMode)
+    console.log(this.displayMode);
   }
 
   onPokemonClicked(event: any) {
-    console.log(`Pokemon ID ${event.id} de type ${event.primaryType} cliqué`);
+    if (this.authService.isLoggedIn()) {
+      console.log(`User is logged in. Pokemon ID ${event.id} clicked.`);
+      this.clickedPokemonId = event.id;
+    } else {
+      console.log(`User is not logged in. Pokemon ID ${event.id} clicked.`);
+      this.showLoginPopup();
+    }
   }
 
-    // Fonction pour formater l'URL de l'image du Pokémon
-    private formatImageUrl(id: number): string {
-      const baseUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
-      // Ne pas ajouter de zéro devant le numéro de l'ID
-      return `${baseUrl}${id}.png`;
-    }
+  showLoginPopup() {
+    alert('Please log in to interact with the Pokémon.');
+  }
 
+  // Fonction pour formater l'URL de l'image du Pokémon
+  private formatImageUrl(id: number): string {
+    const baseUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
+    return `${baseUrl}${id}.png`;
+  }
 }
