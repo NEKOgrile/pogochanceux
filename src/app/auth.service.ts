@@ -67,9 +67,9 @@ export class AuthService {
 
 
 
-  getUserPokemons(): any {
+  getUserPokemons(userid : any): any {
     if (typeof localStorage !== 'undefined') {
-      return this.http.post(`${this.apiUrl}/select-user-pokemon`, { user_id: 5 });
+      return this.http.post(`${this.apiUrl}/select-user-pokemon`, { user_id: userid });
     } else {
       return null;
     }
