@@ -29,6 +29,10 @@ export class ChanceuxComponent implements OnInit {
   ngOnInit(): void {
     this.loadPokemonData();
 
+
+  
+
+
     if (this.authService.isLoggedIn()) {
       this.authService
         .getUserId()
@@ -40,7 +44,7 @@ export class ChanceuxComponent implements OnInit {
         .subscribe(
           (response: any) => {
             this.userId = response.id_user; // Utilisation de response.id_user pour récupérer l'ID utilisateur
-            console.log("ID de l'utilisateur 222 = ", this.userId);
+           
 
             this.authService.getUserPokemons(this.userId).subscribe(
               (data: any) => {
@@ -109,20 +113,55 @@ export class ChanceuxComponent implements OnInit {
             this.userId = response.id_user; // Utilisation de response.id_user pour récupérer l'ID utilisateur
             console.log("ID de l'utilisateur = ", this.userId);
 
-            this.authService
-              .addPokemonToCollection(this.userId, parseInt(event.id, 10))
-              .subscribe(
-                (response: any) => {
-                  console.log(
-                    `Pokemon ID ${event.id} ajouté à la collection de l'utilisateur.`
-                  );
-                  this.userPokemonIds.push(parseInt(event.id, 10));
-                  this.applyLuckyClassToPokemons();
-                },
-                (error: HttpErrorResponse) => {
-                  console.error("Erreur lors de l'ajout du Pokémon :", error);
-                }
-              );
+            const pokemonId = parseInt(event.id, 10);
+            //console.log(this.userPokemonIds.includes(pokemonId));
+
+            if (this.userPokemonIds.includes(pokemonId)) {
+              // Si le Pokémon est déjà chanceux, le retirer
+              console.log(this.userPokemonIds)
+              this.userPokemonIds = this.userPokemonIds.filter(id => id !== pokemonId);
+              console.log(this.userPokemonIds)
+              const updatedUserPokemonIdsText = this.userPokemonIds.join(',');
+              this.authService
+                .UpdatePokemonFromCollection(this.userId, updatedUserPokemonIdsText)
+                .subscribe(
+                  (response: any) => {
+                    console.log(
+                      `Pokemon ID ${event.id} retiré de la collection de l'utilisateur.`
+                    );
+                    this.userPokemonIds = this.userPokemonIds.filter(
+                      (id) => id !== pokemonId
+                    );
+                    this.removeLuckyClassFromPokemon(pokemonId);
+                  },
+                  (error: HttpErrorResponse) => {
+                    console.error(
+                      "Erreur lors du retrait du Pokémon :",
+                      error
+                    );
+                  }
+                );
+
+
+
+
+            } else {
+              // Sinon, l'ajouter comme chanceux
+              this.authService
+                .addPokemonToCollection(this.userId, pokemonId)
+                .subscribe(
+                  (response: any) => {
+                    console.log(
+                      `Pokemon ID ${event.id} ajouté à la collection de l'utilisateur.`
+                    );
+                    this.userPokemonIds.push(pokemonId);
+                    this.applyLuckyClassToPokemon(pokemonId);
+                  },
+                  (error: HttpErrorResponse) => {
+                    console.error("Erreur lors de l'ajout du Pokémon :", error);
+                  }
+                );
+            }
           },
           (error: HttpErrorResponse) => {
             console.error(
@@ -139,11 +178,22 @@ export class ChanceuxComponent implements OnInit {
 
   applyLuckyClassToPokemons(): void {
     this.userPokemonIds.forEach((pokemonId) => {
-      const pokemonElement = document.getElementById(`pokemon-${pokemonId}`);
-      if (pokemonElement) {
-        pokemonElement.classList.add('lucky-pokemon');
-      }
+      this.applyLuckyClassToPokemon(pokemonId);
     });
+  }
+
+  applyLuckyClassToPokemon(pokemonId: number): void {
+    const pokemonElement = document.getElementById(`pokemon-${pokemonId}`);
+    if (pokemonElement) {
+      pokemonElement.classList.add('lucky-pokemon');
+    }
+  }
+
+  removeLuckyClassFromPokemon(pokemonId: number): void {
+    const pokemonElement = document.getElementById(`pokemon-${pokemonId}`);
+    if (pokemonElement) {
+      pokemonElement.classList.remove('lucky-pokemon');
+    }
   }
 
   private formatImageUrl(id: string): string {

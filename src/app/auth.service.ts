@@ -74,4 +74,8 @@ export class AuthService {
       return null;
     }
   }
-}
+
+  UpdatePokemonFromCollection(userId: any, pokemonId: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/update-user-pokemons`, { userId, pokemonId });
+  }
+} 

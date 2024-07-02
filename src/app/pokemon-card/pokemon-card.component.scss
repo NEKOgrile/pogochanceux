@@ -7,6 +7,11 @@
   background-size: cover !important;
 }
 
+.dark-mode .pokemon-card-body {
+  background-color: #121212 !important; /* Fond noir pour le mode sombre */
+  color: white; /* Texte en blanc pour le mode sombre */
+  border-color: #333; /* Bordure foncée pour le mode sombre */
+}
 
 
 

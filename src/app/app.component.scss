@@ -1,67 +1,173 @@
+body {
+  overflow: hidden; /* Masque la barre de défilement */
+}
+
+.content {
+  margin-top: 60px; /* Ajustez si nécessaire pour éviter le chevauchement avec la barre de navigation */
+  overflow-y: auto; /* Permet le défilement vertical du contenu */
+  height: calc(100vh - 60px); /* Calcule la hauteur maximale pour le défilement du contenu */
+}
+
 .navbar {
-    position: fixed; /* Position fixée */
-    top: 0; /* Position en haut de la page */
-    left: 0;
-    width: 100%; /* Largeur de 100% */
-    background-color: #333;
-    color: #fff;
+  position: fixed; /* Position fixée */
+  top: 0; /* Position en haut de la page */
+  left: 0;
+  width: 100%; /* Largeur de 100% */
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  z-index: 1000; /* Assure que la barre de navigation soit au-dessus du contenu */
+}
+
+.navbar-logo img {
+  width: 50px; /* Taille de votre logo */
+}
+
+.navbar-menu {
+  ul.menu-items {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    z-index: 1000; /* Assure que la barre de navigation soit au-dessus du contenu */
-  }
-  
-  .navbar-logo img {
-    width: 50px; /* Taille de votre logo */
-  }
-  
-  .navbar-menu {
-    ul.menu-items {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      align-items: center;
-  
-      li {
+
+    li {
+      margin: 0 5px;
+
+      a {
+        color: #fff;
+        text-decoration: none;
+        padding: 5px 10px;
+        transition: color 0.3s;
+
+        &:hover {
+          color: #ffcc00;
+        }
+      }
+
+      .separator {
+        color: #999;
         margin: 0 5px;
-  
-        a {
-          color: #fff;
-          text-decoration: none;
-          padding: 5px 10px;
-          transition: color 0.3s;
-  
-          &:hover {
-            color: #ffcc00;
-          }
-        }
-  
-        .separator {
-          color: #999;
-          margin: 0 5px;
-        }
-  
-        &.active a {
-          font-weight: bold;
-        }
+      }
+
+      &.active a {
+        font-weight: bold;
       }
     }
   }
-  
-  .content {
-    margin-top: 60px; /* Ajustez la marge supérieure pour éviter que le contenu ne soit caché sous la barre de navigation */
-  }
-  
+}
 
-  body {
-    overflow: hidden; /* Masque la barre de défilement */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+body.dark-mode {
+  background-color: #121212 !important;
+  color: #ffffff;
+}
+
+body.dark-mode .navbar {
+  background-color: #1f1f1f;
+}
+
+body.dark-mode .navbar-menu ul.menu-items li a {
+  color: #ffffff;
+}
+
+body.dark-mode .navbar-menu ul.menu-items li a:hover {
+  color: #ffcc00;
+}
+
+body.dark-mode .content {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.pokeball-toggle {
+  width: 50px; /* Taille de la Pokeball */
+  height: 50px; /* Taille de la Pokeball */
+  cursor: pointer;
+  background-image: url('https://i.ibb.co/C2tqxwT/image-2024-07-02-195807406.png'); /* Remplacez par le chemin de votre image */
+  background-size: contain; /* Assure que l'image s'adapte dans la taille spécifiée */
+  background-repeat: no-repeat; /* Assure que l'image ne se répète pas */
+  transition: transform 0.5s ease;
+}
+
+.pokeball-toggle.dark-mode {
+  background-image: url('https://i.ibb.co/7KW9S2p/image-2024-07-02-211020760.png'); /* Image pour le mode sombre */
+}
+
+.pokeball-toggle.animate {
+  animation: spin 0.5s ease forwards;
+}
+
+.pokeball-toggle.animate-reverse {
+  animation: spin-reverse 0.5s ease forwards;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
   }
-  
-  .content {
-    margin-top: 60px; /* Ajustez si nécessaire pour éviter le chevauchement avec la barre de navigation */
-    overflow-y: auto; /* Permet le défilement vertical du contenu */
-    height: calc(100vh - 60px); /* Calcule la hauteur maximale pour le défilement du contenu */
+  to {
+    transform: rotate(360deg);
   }
-  
+}
+
+@keyframes spin-reverse {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+
+
+
+

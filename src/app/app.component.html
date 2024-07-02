@@ -1,27 +1,34 @@
 <div class="navbar">
-    <div class="navbar-logo">
-      <img src="path/to/logo.png" alt="Logo" class="logo">
-    </div>
-    <nav class="navbar-menu">
-      <ul class="menu-items">
-        <li><a routerLink="/" routerLinkActive="active">Home</a></li>
-        <li><span class="separator">|</span></li>
-        <li><a routerLink="/chanceux" routerLinkActive="active">Chanceux</a></li>
-        <li><a routerLink="/shiny" routerLinkActive="active">Shiny</a></li>
-        <li><a routerLink="/obscure" routerLinkActive="active">Obscure</a></li>
-        <li><span class="separator">|</span></li>
-        <li><a *ngIf="isLoggedIn; else loginRegisterLink" routerLink="/profile">{{ username }}</a></li>
-        <ng-template #loginRegisterLink>
-          <li><a routerLink="/login">Login</a></li>
-          <li><a routerLink="/register">Register</a></li>
-        </ng-template>
-        <li class="separator"></li>
-        <li *ngIf="isLoggedIn"><a (click)="logout()">Logout</a></li>
-      </ul>
-    </nav>
+  <div class="navbar-logo">
+    <img src="path/to/logo.png" alt="Logo" class="logo">
   </div>
-  
-  <div class="content">
-    <router-outlet></router-outlet>
-  </div>
-  
+  <nav class="navbar-menu">
+    <ul class="menu-items">
+      <li><a routerLink="/" routerLinkActive="active">Home</a></li>
+      <li><span class="separator">|</span></li>
+      <li><a routerLink="/chanceux" routerLinkActive="active">Chanceux</a></li>
+      <li><a routerLink="/shiny" routerLinkActive="active">Shiny</a></li>
+      <li><a routerLink="/obscure" routerLinkActive="active">Obscure</a></li>
+      <li><span class="separator">|</span></li>
+      <li><a *ngIf="isLoggedIn; else loginRegisterLink" routerLink="/profile">{{ username }}</a></li>
+      <ng-template #loginRegisterLink>
+        <li><a routerLink="/login">Login</a></li>
+        <li><a routerLink="/register">Register</a></li>
+      </ng-template>
+      <li class="separator"></li>
+      <li *ngIf="isLoggedIn"><a (click)="logout()">Logout</a></li>
+      <li>
+        <div 
+          class="pokeball-toggle" 
+          [class.dark-mode]="isDarkMode" 
+          (click)="togglePokeball()"
+          [ngClass]="{ 'animate': isPokeballClicked, 'animate-reverse': !isPokeballClicked }"
+        ></div>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>
