@@ -5,26 +5,24 @@ import { Component, Input, OnInit, Output, EventEmitter, ViewEncapsulation } fro
   templateUrl: './pokemon-card.component.html',
   styleUrls: ['./pokemon-card.component.scss'],
   encapsulation: ViewEncapsulation.None
-  
 })
-export class PokemonCardComponent implements OnInit{
+export class PokemonCardComponent implements OnInit {
   @Input() pokemon: any;
   @Input() type!: string;
   @Input() displayMode: string = 'default';
   @Input() isClicked: boolean = false;
   @Output() pokemonClicked = new EventEmitter<any>();
 
-  darkMode: boolean = false; // Variable pour suivre l'état du mode sombre
+  darkMode: boolean = false;
 
   constructor() {}
+
   ngOnInit(): void {
-    const darkMode = localStorage.getItem('darkMode');
-    this.darkMode = darkMode === 'true'; // Convertir en boolean (true ou false)
-    
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const darkMode = localStorage.getItem('darkMode');
+      this.darkMode = darkMode === 'true';
+    }
   }
-
-
-
 
   onCardClick() {
     this.pokemonClicked.emit({ id: this.pokemon.id });
