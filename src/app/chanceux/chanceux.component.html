@@ -8,13 +8,13 @@
   </div>
 
   <div class="row">
-    <div *ngFor="let pokemon of pokemons" [ngClass]="colClass" [attr.id]="'pokemon-' + pokemon.id">
+    <div *ngFor="let pokemon of pokemons" [ngClass]="colClass">
       <app-pokemon-card 
         [pokemon]="pokemon" 
         type="Chanceux"
         [displayMode]="displayMode"
-        [isClicked]="userPokemonIds.includes(parseId(pokemon.id))"
-        (pokemonClicked)="onPokemonClicked($event)">
+        [isClicked]="userPokemonIds.includes(pokemon.id.toString())"
+                (pokemonClicked)="onPokemonClicked($event)">
       </app-pokemon-card>
     </div>
   </div>

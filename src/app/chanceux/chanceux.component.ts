@@ -22,16 +22,12 @@ export class ChanceuxComponent implements OnInit {
   displayMode: string = 'default';
   pokemons: Pokemon[] = [];
   clickedPokemonId: string | null = null;
-  userPokemonIds: number[] = [];
+  userPokemonIds: string[] = []; // Changed to string[]
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.loadPokemonData();
-
-
-  
-
 
     if (this.authService.isLoggedIn()) {
       this.authService
@@ -44,11 +40,12 @@ export class ChanceuxComponent implements OnInit {
         .subscribe(
           (response: any) => {
             this.userId = response.id_user; // Utilisation de response.id_user pour récupérer l'ID utilisateur
-           
 
             this.authService.getUserPokemons(this.userId).subscribe(
               (data: any) => {
-                this.userPokemonIds = data.pokemon_ids; // Mettre à jour les IDs des Pokémon
+                this.userPokemonIds = data.pokemon_ids.map((id: number) =>
+                  id.toString().padStart(3, '0')
+                ); // Mettre à jour les IDs des Pokémon et les formater comme des chaînes avec zéros de remplissage
 
                 this.applyLuckyClassToPokemons(); // Appliquer la classe CSS aux Pokémon chanceux
               },
@@ -95,12 +92,13 @@ export class ChanceuxComponent implements OnInit {
     this.colClass = `col-md-${12 / count}`;
     this.displayMode = count === 6 ? 'compact' : 'default';
   }
+  
 
   onPokemonClicked(event: any): void {
     if (this.authService.isLoggedIn()) {
       console.log(`User is logged in. Pokemon ID ${event.id} clicked.`);
       this.clickedPokemonId = event.id;
-
+  
       this.authService
         .getUserId()
         .pipe(
@@ -112,16 +110,19 @@ export class ChanceuxComponent implements OnInit {
           (response: any) => {
             this.userId = response.id_user; // Utilisation de response.id_user pour récupérer l'ID utilisateur
             console.log("ID de l'utilisateur = ", this.userId);
-
-            const pokemonId = parseInt(event.id, 10);
-            //console.log(this.userPokemonIds.includes(pokemonId));
-
+  
+            const pokemonId = event.id; // Utilisation directe de l'ID de type string
+  
             if (this.userPokemonIds.includes(pokemonId)) {
               // Si le Pokémon est déjà chanceux, le retirer
-              console.log(this.userPokemonIds)
-              this.userPokemonIds = this.userPokemonIds.filter(id => id !== pokemonId);
-              console.log(this.userPokemonIds)
-              const updatedUserPokemonIdsText = this.userPokemonIds.join(',');
+              console.log(this.userPokemonIds);
+              this.userPokemonIds = this.userPokemonIds.filter(
+                (id) => id !== pokemonId
+              );
+              console.log(this.userPokemonIds);
+              const updatedUserPokemonIdsText = this.userPokemonIds
+                .map((id) => parseInt(id, 10))
+                .join(',');
               this.authService
                 .UpdatePokemonFromCollection(this.userId, updatedUserPokemonIdsText)
                 .subscribe(
@@ -141,14 +142,10 @@ export class ChanceuxComponent implements OnInit {
                     );
                   }
                 );
-
-
-
-
             } else {
               // Sinon, l'ajouter comme chanceux
               this.authService
-                .addPokemonToCollection(this.userId, pokemonId)
+                .addPokemonToCollection(this.userId, parseInt(pokemonId, 10))
                 .subscribe(
                   (response: any) => {
                     console.log(
@@ -178,35 +175,37 @@ export class ChanceuxComponent implements OnInit {
 
   applyLuckyClassToPokemons(): void {
     this.userPokemonIds.forEach((pokemonId) => {
-      this.applyLuckyClassToPokemon(pokemonId);
+      const idNumber = parseInt(pokemonId, 10); // Convertir en nombre
+      this.applyLuckyClassToPokemon(idNumber);
     });
   }
+  
 
   applyLuckyClassToPokemon(pokemonId: number): void {
-    const pokemonElement = document.getElementById(`pokemon-${pokemonId}`);
+    const pokemonElement = document.getElementById(`pokemon-${pokemonId.toString()}`);
     if (pokemonElement) {
       pokemonElement.classList.add('lucky-pokemon');
     }
   }
-
+  
   removeLuckyClassFromPokemon(pokemonId: number): void {
-    const pokemonElement = document.getElementById(`pokemon-${pokemonId}`);
+    const pokemonElement = document.getElementById(`pokemon-${pokemonId.toString()}`);
     if (pokemonElement) {
       pokemonElement.classList.remove('lucky-pokemon');
     }
   }
-
+  
   private formatImageUrl(id: string): string {
     const baseUrl =
       'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
-    return `${baseUrl}${id}.png`;
+    return `${baseUrl}${parseInt(id, 10)}.png`; // Changed to use numeric ID
   }
 
   private showLoginPopup() {
     alert('Please log in to select this Pokemon.');
   }
 
-  parseId(id: string): number {
+  parseId(id: any): number {
     return parseInt(id, 10);
   }
 }
