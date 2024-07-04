@@ -27,6 +27,23 @@ export class ChanceuxComponent implements OnInit {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   ngOnInit(): void {
+
+
+    if (this.authService.isLoggedIn()) {
+      if (this.userId === null) {
+        this.authService.getUserId().pipe(
+          tap((response: any) => {
+            console.log('Réponse du service getUserId :', response);
+            this.userId = response.id_user; // Mettre à jour this.userId avec la valeur reçue
+            console.log('L\'ID est pris par la fonction = ', this.userId);
+          }),
+        ).subscribe();
+      } else {
+        console.log("L'ID est déjà dans une variable locale :", this.userId);
+      }
+    }
+  
+
     this.loadPokemonData();
 
     if (this.authService.isLoggedIn()) {
@@ -99,79 +116,65 @@ export class ChanceuxComponent implements OnInit {
       console.log(`User is logged in. Pokemon ID ${event.id} clicked.`);
       this.clickedPokemonId = event.id;
   
-      this.authService
-        .getUserId()
-        .pipe(
-          tap((response) =>
-            console.log('Réponse du service getUserId :', response)
-          )
-        )
-        .subscribe(
-          (response: any) => {
-            this.userId = response.id_user; // Utilisation de response.id_user pour récupérer l'ID utilisateur
-            console.log("ID de l'utilisateur = ", this.userId);
+      if (!this.userId) {
+        console.error("L'ID de l'utilisateur n'est pas défini.");
+        return;
+      }
   
-            const pokemonId = event.id; // Utilisation directe de l'ID de type string
+      const pokemonId = event.id;
   
-            if (this.userPokemonIds.includes(pokemonId)) {
-              // Si le Pokémon est déjà chanceux, le retirer
-              console.log(this.userPokemonIds);
+      if (this.userPokemonIds.includes(pokemonId)) {
+        // Si le Pokémon est déjà chanceux, le retirer
+        console.log(this.userPokemonIds);
+        this.userPokemonIds = this.userPokemonIds.filter(
+          (id) => id !== pokemonId
+        );
+        console.log(this.userPokemonIds);
+        const updatedUserPokemonIdsText = this.userPokemonIds
+          .map((id) => parseInt(id, 10))
+          .join(',');
+        this.authService
+          .UpdatePokemonFromCollection(this.userId, updatedUserPokemonIdsText)
+          .subscribe(
+            (response: any) => {
+              console.log(
+                `Pokemon ID ${event.id} retiré de la collection de l'utilisateur.`
+              );
               this.userPokemonIds = this.userPokemonIds.filter(
                 (id) => id !== pokemonId
               );
-              console.log(this.userPokemonIds);
-              const updatedUserPokemonIdsText = this.userPokemonIds
-                .map((id) => parseInt(id, 10))
-                .join(',');
-              this.authService
-                .UpdatePokemonFromCollection(this.userId, updatedUserPokemonIdsText)
-                .subscribe(
-                  (response: any) => {
-                    console.log(
-                      `Pokemon ID ${event.id} retiré de la collection de l'utilisateur.`
-                    );
-                    this.userPokemonIds = this.userPokemonIds.filter(
-                      (id) => id !== pokemonId
-                    );
-                    this.removeLuckyClassFromPokemon(pokemonId);
-                  },
-                  (error: HttpErrorResponse) => {
-                    console.error(
-                      "Erreur lors du retrait du Pokémon :",
-                      error
-                    );
-                  }
-                );
-            } else {
-              // Sinon, l'ajouter comme chanceux
-              this.authService
-                .addPokemonToCollection(this.userId, parseInt(pokemonId, 10))
-                .subscribe(
-                  (response: any) => {
-                    console.log(
-                      `Pokemon ID ${event.id} ajouté à la collection de l'utilisateur.`
-                    );
-                    this.userPokemonIds.push(pokemonId);
-                    this.applyLuckyClassToPokemon(pokemonId);
-                  },
-                  (error: HttpErrorResponse) => {
-                    console.error("Erreur lors de l'ajout du Pokémon :", error);
-                  }
-                );
+              this.removeLuckyClassFromPokemon(pokemonId);
+            },
+            (error: HttpErrorResponse) => {
+              console.error(
+                "Erreur lors du retrait du Pokémon :",
+                error
+              );
             }
-          },
-          (error: HttpErrorResponse) => {
-            console.error(
-              "Erreur lors de la récupération de l'ID de l'utilisateur :",
-              error
-            );
-          }
-        );
+          );
+      } else {
+        // Sinon, l'ajouter comme chanceux
+        this.authService
+          .addPokemonToCollection(this.userId, parseInt(pokemonId, 10))
+          .subscribe(
+            (response: any) => {
+              console.log(
+                `Pokemon ID ${event.id} ajouté à la collection de l'utilisateur.`
+              );
+              this.userPokemonIds.push(pokemonId);
+              this.applyLuckyClassToPokemon(pokemonId);
+            },
+            (error: HttpErrorResponse) => {
+              console.error("Erreur lors de l'ajout du Pokémon :", error);
+            }
+          );
+      }
     } else {
       console.log(`User is not logged in. Pokemon ID ${event.id} clicked.`);
       this.showLoginPopup();
     }
   }
+  
 
   applyLuckyClassToPokemons(): void {
     this.userPokemonIds.forEach((pokemonId) => {
