@@ -7,14 +7,20 @@
     </div>
   </div>
 
+  <div class="row mb-4">
+    <div class="col-md-6 offset-md-3">
+      <input type="text" class="form-control" placeholder="Rechercher par ID" [(ngModel)]="searchQuery" (ngModelChange)="filterPokemons()" />
+    </div>
+  </div>
+
   <div class="row">
-    <div *ngFor="let pokemon of pokemons" [ngClass]="colClass">
+    <div *ngFor="let pokemon of filteredPokemons" [ngClass]="colClass">
       <app-pokemon-card 
         [pokemon]="pokemon" 
         type="Chanceux"
         [displayMode]="displayMode"
         [isClicked]="userPokemonIds.includes(pokemon.id.toString())"
-                (pokemonClicked)="onPokemonClicked($event)">
+        (pokemonClicked)="onPokemonClicked($event)">
       </app-pokemon-card>
     </div>
   </div>

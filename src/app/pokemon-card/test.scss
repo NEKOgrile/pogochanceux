@@ -1,3 +1,27 @@
+.lucky-pokemon .pokemon-card-body,
+.lucky-pokemon .pokemon-card-footer {
+  background: url('https://i.ibb.co/48r235H/gold-texture.png') center center no-repeat !important;
+  background-size: cover !important;
+}
+
+.dark-mode .pokemon-card-body {
+  background-color: #121212 !important; /* Fond noir pour le mode sombre */
+  color: white; /* Texte en blanc pour le mode sombre */
+  border-color: #333; /* Bordure foncée pour le mode sombre */
+}
+
+
+
+.clicked {
+
+  .pokemon-card-body,
+  .pokemon-card-footer {
+    background: url('https://i.ibb.co/48r235H/gold-texture.png') center center no-repeat !important;
+    background-size: cover !important;
+  }
+
+  
+}
 .pokemon-card {
   border: 2px solid;
   border-radius: 15px;
