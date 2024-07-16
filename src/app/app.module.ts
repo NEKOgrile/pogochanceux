@@ -12,6 +12,7 @@ import { ChanceuxComponent } from './chanceux/chanceux.component';
 import { ShinyComponent } from './shiny/shiny.component';
 import { ObscureComponent } from './obscure/obscure.component';
 import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,9 @@ import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

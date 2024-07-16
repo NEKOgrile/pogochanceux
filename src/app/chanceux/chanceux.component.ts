@@ -31,15 +31,18 @@ export class ChanceuxComponent implements OnInit {
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
       if (this.userId === null) {
-        this.authService.getUserId().pipe(
-          tap((response: any) => {
-            console.log('Réponse du service getUserId :', response);
-            this.userId = response.id_user; // Mettre à jour this.userId avec la valeur reçue
-            console.log('L\'ID est pris par la fonction = ', this.userId);
-            // Charger les Pokémon de l'utilisateur après avoir reçu l'ID utilisateur
-            this.loadUserPokemons();
-          }),
-        ).subscribe();
+        this.authService
+          .getUserId()
+          .pipe(
+            tap((response: any) => {
+              console.log('Réponse du service getUserId :', response);
+              this.userId = response.id_user; // Mettre à jour this.userId avec la valeur reçue
+              console.log("L'ID est pris par la fonction = ", this.userId);
+              // Charger les Pokémon de l'utilisateur après avoir reçu l'ID utilisateur
+              this.loadUserPokemons();
+            })
+          )
+          .subscribe();
       } else {
         console.log("L'ID est déjà dans une variable locale :", this.userId);
         // Charger les Pokémon de l'utilisateur si l'ID est déjà disponible
@@ -80,7 +83,10 @@ export class ChanceuxComponent implements OnInit {
           this.userPokemonIds = data.pokemon_ids.map((id: number) =>
             id.toString().padStart(3, '0')
           ); // Mettre à jour les IDs des Pokémon et les formater comme des chaînes avec zéros de remplissage
-          console.log('Pokémons de l\'utilisateur chargés :', this.userPokemonIds);
+          console.log(
+            "Pokémons de l'utilisateur chargés :",
+            this.userPokemonIds
+          );
           // Appliquer la classe chanceux après le chargement des IDs des Pokémon de l'utilisateur
           this.applyLuckyClassToPokemons();
         },
@@ -117,10 +123,11 @@ export class ChanceuxComponent implements OnInit {
         this.userPokemonIds = this.userPokemonIds.filter(
           (id) => id !== pokemonId
         );
-        console.log(this.userPokemonIds);
+        
         const updatedUserPokemonIdsText = this.userPokemonIds
           .map((id) => parseInt(id, 10))
           .join(',');
+          console.log(updatedUserPokemonIdsText);
         this.authService
           .UpdatePokemonFromCollection(this.userId, updatedUserPokemonIdsText)
           .subscribe(
@@ -134,10 +141,7 @@ export class ChanceuxComponent implements OnInit {
               this.removeLuckyClassFromPokemon(pokemonId);
             },
             (error: HttpErrorResponse) => {
-              console.error(
-                "Erreur lors du retrait du Pokémon :",
-                error
-              );
+              console.error('Erreur lors du retrait du Pokémon :', error);
             }
           );
       } else {
@@ -202,14 +206,44 @@ export class ChanceuxComponent implements OnInit {
     return parseInt(id, 10);
   }
 
-  
   filterPokemons() {
     if (!this.searchQuery) {
       this.filteredPokemons = this.pokemons;
       return;
     }
 
-    const ids = this.searchQuery.split(',').map(id => id.trim().padStart(3, '0'));
-    this.filteredPokemons = this.pokemons.filter(pokemon => ids.includes(pokemon.id));
+    const ids = this.searchQuery
+      .split(',')
+      .map((id) => id.trim().padStart(3, '0'));
+    this.filteredPokemons = this.pokemons.filter((pokemon) =>
+      ids.includes(pokemon.id)
+    );
   }
+
+  onValidateAll() {
+    // Extraire les ID des Pokémon filtrés
+    const filteredIds = this.filteredPokemons.map(pokemon => pokemon.id);
+    
+    // Fusionner les ID actuels de l'utilisateur avec ceux filtrés, en supprimant les doublons
+    const uniqueIds = Array.from(new Set([...this.userPokemonIds, ...filteredIds]));
+    
+    // Convertir les ID en nombres et les joindre en une chaîne de texte
+    const updatedUserPokemonIdsText = uniqueIds.map(id => parseInt(id, 10)).join(',');
+    
+    console.log(updatedUserPokemonIdsText);
+    
+    // Appeler le service de mise à jour avec les ID fusionnés
+    this.authService.UpdatePokemonFromCollection(this.userId, updatedUserPokemonIdsText).subscribe(
+      (response: any) => {
+        console.log(`Pokémon ID ${updatedUserPokemonIdsText} mis à jour dans la collection de l'utilisateur.`);
+        
+        // Mettre à jour la liste des ID de Pokémon de l'utilisateur localement
+        this.userPokemonIds = uniqueIds;
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Erreur lors de la mise à jour des Pokémon :', error);
+      }
+    );
+  }
+  
 }

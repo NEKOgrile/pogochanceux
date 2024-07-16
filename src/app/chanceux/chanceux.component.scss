@@ -20,3 +20,49 @@
         }
     }
 }
+
+
+
+
+.btn-pokemon {
+    background-color: #ffcb05; /* Jaune Pikachu */
+    color: #3b4cca; /* Bleu Pokémon */
+    border: 2px solid #3b4cca;
+    border-radius: 25px; /* Bordures arrondies */
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  
+    &:hover {
+      background-color: #ffdf5d; /* Variation de couleur au survol */
+      transform: scale(1.05); /* Légère agrandissement au survol */
+    }
+  
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(59, 76, 202, 0.5);
+    }
+  
+    &:active {
+      background-color: #e6b800; /* Couleur plus foncée lorsque le bouton est cliqué */
+    }
+  
+    &::before {
+      content: '';
+      background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png'); /* URL de l'image de Pokéball */
+      background-size: contain;
+      background-repeat: no-repeat;
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+    }
+  }
+  
+  
