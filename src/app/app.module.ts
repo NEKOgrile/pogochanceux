@@ -13,6 +13,12 @@ import { ShinyComponent } from './shiny/shiny.component';
 import { ObscureComponent } from './obscure/obscure.component';
 import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
+import { FriendsComponent } from './friends/friends.component';
+import { OptionsComponent } from './options/options.component';
+import { ProfileComponent } from './profile/profile.component';
+import { MatTabsModule } from '@angular/material/tabs'; // Importez le module MatTabsModule
+
 
 @NgModule({
   declarations: [
@@ -23,13 +29,18 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     ChanceuxComponent,
     ShinyComponent,
     ObscureComponent,
-    PokemonCardComponent
+    PokemonCardComponent,
+    ProfileEditComponent,
+    FriendsComponent,
+    OptionsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatTabsModule
   ],
   providers: [
     provideAnimationsAsync()
