@@ -12,18 +12,15 @@ import { FriendsComponent } from './friends/friends.component';
 import { OptionsComponent } from './options/options.component';
 
 const routes: Routes = [
-  { path: 'profile', component: ProfileEditComponent, children: [
-    { path: 'edit', component: ProfileEditComponent },
-    { path: 'friends', component: FriendsComponent },
-    { path: 'options', component: OptionsComponent },
-    { path: '', redirectTo: 'edit', pathMatch: 'full' }
-]},
   { path: 'home', component: HomeComponent  }, //canActivate: [AuthGuard]
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'chanceux', component: ChanceuxComponent },
   { path: 'shiny', component: ShinyComponent },
   { path: 'obscure', component: ObscureComponent },
+  { path: 'profile', component: ProfileEditComponent},
+  { path: 'friend', component: FriendsComponent},
+  { path: 'edit profil', component: OptionsComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home' }
 ];

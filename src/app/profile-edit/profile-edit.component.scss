@@ -1,0 +1,57 @@
+// Exemple de thème Pokémon (à ajouter dans styles.scss)
+.pokemon-theme {
+    background-color: #f8e585; // Jaune Pikachu
+    color: #333; // Couleur de texte sombre
+  }
+  
+  .card-header {
+    background-color: #ff4f4f; // Rouge Charmander
+    color: #fff; // Texte blanc
+  }
+  
+  .btn-primary {
+    background-color: #4fc1e9; // Bleu Squirtle
+    border-color: #4fc1e9;
+
+  }
+  
+  .btn-primary:hover {
+    background-color: #3bafda; // Variation de couleur au survol
+  }
+  
+  .image-container {
+    height: 150px; /* Ajustez la hauteur selon vos besoins */
+    overflow: hidden;
+    margin-bottom: 20px; /* Pour ajouter un peu d'espace en bas des images */
+  }
+  
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Pour garder les proportions de l'image tout en la remplissant */
+  }
+  
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    transition: transform 0.3s;
+  }
+  
+  .img-fluid:hover {
+    transform: scale(1.05);
+    border-color: #f44336;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .col-md-4 {
+    flex: 0 0 30%; /* Ajustez la largeur selon vos besoins */
+    max-width: 30%; /* Ajustez la largeur selon vos besoins */
+    margin: 10px;
+  }
+  
