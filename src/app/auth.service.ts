@@ -72,7 +72,25 @@ export class AuthService {
   UpdatePokemonFromCollection(userId: any, pokemonId: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/update-user-pokemons`, { userId, pokemonId });
   }
+  searchUsers(username: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/users/search`, { params: { username } });
+  }
 
+  getFriendRequests(userId: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/friends/requests/${userId}`);
+  }
+
+  sendFriendRequest(userId: string, friendId: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/friends/request`, { userId, friendId });
+  }
+
+  acceptFriendRequest(userId: string, friendId: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/friends/accept`, { userId, friendId });
+  }
+
+  rejectFriendRequest(userId: string, friendId: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/friends/reject`, { userId, friendId });
+  }
   
 
 }
