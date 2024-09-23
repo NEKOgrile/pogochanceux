@@ -82,4 +82,28 @@
       }
     }
   }
+  .user-list {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #212121;
+    border-radius: 10px;
+    
+    overflow-y: auto;
+  }
+  
+  .user-card {
+    background-color: #3b4cca;
+    border: 2px solid #f3bc3a;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    &:hover {
+      background-color: #354a9e;
+    }
+  }
   

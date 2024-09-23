@@ -1,16 +1,14 @@
 <div class="main-container">
-    <div class="header">
-      <button class="btn add-friend">+</button>
-      <button class="btn search-friend">🔍</button>
-      <button class="btn requests">📩</button>
-    </div>
-  
-    <div class="player-list">
-      <div class="player-card">
-        <span class="player-name"></span>
-        <button class="btn player-action">Action 1</button>
-        <button class="btn player-action">Action 2</button>
-      </div>
+  <div class="header">
+    <button class="btn add-friend" (click)="toggleUserList()">+</button>
+    <button class="btn search-friend">🔍</button>
+    <button class="btn requests">📩</button>
+  </div>
+
+  <!-- Affichage de la liste des utilisateurs -->
+  <div *ngIf="showUsers" class="user-list">
+    <div *ngFor="let user of users" class="user-card">
+      <span>{{ user.username }}</span>
     </div>
   </div>
-  
+</div>
