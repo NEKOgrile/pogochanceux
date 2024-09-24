@@ -20,4 +20,5 @@ describe('FriendsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
 });

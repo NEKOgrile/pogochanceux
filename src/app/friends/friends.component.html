@@ -5,10 +5,19 @@
     <button class="btn requests">📩</button>
   </div>
 
-  <!-- Affichage de la liste des utilisateurs -->
-  <div *ngIf="showUsers" class="user-list">
-    <div *ngFor="let user of users" class="user-card">
-      <span>{{ user.username }}</span>
+  <!-- Affichage de la liste des utilisateurs avec une barre de recherche -->
+  <div *ngIf="showUsers" class="user-list-container">
+    <!-- Barre de recherche -->
+    <div class="search-bar">
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Rechercher un joueur..." (input)="filterUsers()" />
+      <button class="btn search-icon">🔍</button>
+    </div>
+
+    <!-- Liste des utilisateurs -->
+    <div class="user-list">
+      <div *ngFor="let user of filteredUsers" class="user-card">
+        <span>{{ user.username }}</span>
+      </div>
     </div>
   </div>
 </div>

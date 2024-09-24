@@ -106,4 +106,66 @@
       background-color: #354a9e;
     }
   }
+  .user-list-container {
+    position: relative;
+  
+    overflow-y: auto;
+    background-color: #212121;
+    padding-top: 60px; /* Pour décaler la liste sous la barre de recherche */
+  }
+  
+  .search-bar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3b4cca;
+    padding: 10px;
+    border-bottom: 2px solid #f3bc3a;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .search-bar input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .search-icon {
+    background-color: #ffcc00;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+  }
+  
+  .user-list {
+    margin-top: 10px;
+    padding: 10px;
+  }
+  
+  .user-card {
+    background-color: #3b4cca;
+    border: 2px solid #f3bc3a;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    &:hover {
+      background-color: #354a9e;
+    }
+  }
   
