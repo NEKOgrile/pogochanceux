@@ -2,14 +2,18 @@
   <div class="header">
     <button class="btn add-friend" (click)="toggleUserList()">+</button>
     <button class="btn search-friend">🔍</button>
-    <button class="btn requests">📩</button>
   </div>
 
   <!-- Affichage de la liste des utilisateurs avec une barre de recherche -->
   <div *ngIf="showUsers" class="user-list-container">
     <!-- Barre de recherche -->
     <div class="search-bar">
-      <input type="text" [(ngModel)]="searchTerm" placeholder="Rechercher un joueur..." (input)="filterUsers()" />
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Rechercher un joueur..."
+        (input)="filterUsers()"
+      />
       <button class="btn search-icon">🔍</button>
     </div>
 
@@ -18,6 +22,17 @@
       <div *ngFor="let user of filteredUsers" class="user-card">
         <span>{{ user.username }}</span>
       </div>
+    </div>
+  </div>
+
+  <!-- Affichage des demandes d'amis -->
+  <div class="friend-requests">
+    <h2>Demandes d'amis</h2>
+    <div *ngIf="frienRequest.length === 0">Aucune demande d'ami.</div>
+    <div *ngFor="let request of frienRequest" class="friend-request-card">
+      <span>{{ request.username }} a envoyé une demande d'ami.</span>
+      <button class="btn accept-request">Accepter</button>
+      <button class="btn decline-request">Refuser</button>
     </div>
   </div>
 </div>

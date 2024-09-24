@@ -76,19 +76,19 @@ export class AuthService {
     return this.http.get(`${this.apiUrl}/users/search`, { params: { username } });
   }
 
-  getFriendRequests(userId: string): Observable<any> {
+  getFriendRequests(userId: number | null): Observable<any> {
     return this.http.get(`${this.apiUrl}/friends/requests/${userId}`);
   }
 
-  sendFriendRequest(userId: string, friendId: string): Observable<any> {
+  sendFriendRequest(userId: number, friendId: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/friends/request`, { userId, friendId });
   }
 
-  acceptFriendRequest(userId: string, friendId: string): Observable<any> {
+  acceptFriendRequest(userId: number, friendId: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/friends/accept`, { userId, friendId });
   }
 
-  rejectFriendRequest(userId: string, friendId: string): Observable<any> {
+  rejectFriendRequest(userId: number, friendId: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/friends/reject`, { userId, friendId });
   }
   getAllUsers(): Observable<any> {
