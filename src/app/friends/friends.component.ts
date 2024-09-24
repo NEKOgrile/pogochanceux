@@ -15,7 +15,9 @@ export class FriendsComponent implements OnInit {
   searchTerm: string = '';         // Terme de recherche pour filtrer les utilisateurs
   showUsers: boolean = false;      // Variable pour gérer l'affichage de la liste des utilisateurs
   userId: number | null = null;
-  frienRequest: any[] = [];
+  frienRequest: any[] = [];        // Tableau avec les demandes d'amis pour l'utilisateur connecté
+  allUsers: any[] = [];            // Liste pour stocker toutes les infos des utilisateurs
+
 
   constructor(private authService: AuthService) {}
 
@@ -27,7 +29,7 @@ export class FriendsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadUsers();  // Charge les utilisateurs dès le démarrage
-
+  
     if (this.authService.isLoggedIn()) {
       if (this.userId === null) {
         this.authService
@@ -37,19 +39,18 @@ export class FriendsComponent implements OnInit {
               console.log('Réponse du service getUserId :', response);
               this.userId = response.id_user; // Mettre à jour this.userId avec la valeur reçue
               console.log("L'ID est pris par la fonction = ", this.userId);
-              // Charger les Pokémon de l'utilisateur après avoir reçu l'ID utilisateur
-              this.GetRequest(this.userId)
+              // Charger les demandes d'amis après avoir reçu l'ID utilisateur
+              this.GetRequest(this.userId);
+              this.loadAllUserInfo();
             })
-            
           )
           .subscribe();
       } else {
         console.log("L'ID est déjà dans une variable locale :", this.userId);
       }
-     
     }  
   }
-
+  
   // Méthode pour charger les utilisateurs depuis l'API
   loadUsers(): void {
     this.authService.getAllUsers().subscribe(
@@ -62,40 +63,45 @@ export class FriendsComponent implements OnInit {
       }
     );
   }
-
-
-  GetRequest(user_id_get : number | null): void {
-    this.authService.getUserId().subscribe(
-      (userid: any) => {
-        this.userId = userid;
-        if (!this.userId) {
-          console.error("Aucun utilisateur connecté !");
-          return;
-        }
   
-        this.authService.getFriendRequests(user_id_get).subscribe(
-          (data: any[]) => {
-            console.log('Demandes d\'amitié reçues pour l id :' , user_id_get, data);
-            this.frienRequest = data;
-          },
-          (error) => {
-            console.error("Erreur lors de la récupération des demandes d'amitié", error);
-          }
-        );
+  // Méthode pour récupérer les demandes d'amis
+  GetRequest(user_id_get: number | null): void {
+    if (!user_id_get) {
+      console.error("Aucun utilisateur connecté !");
+      return;
+    }
+  
+    this.authService.getFriendRequests(user_id_get).subscribe(
+      (data: any[]) => {
+        console.log('Demandes d\'amitié reçues pour l\'id :', user_id_get, data);
+        this.frienRequest = data; // Stocker les demandes d'amis
+      },
+      (error) => {
+        console.error("Erreur lors de la récupération des demandes d'amitié", error);
+      }
+    );
+  }
+  
+
+  // Méthode pour charger toutes les informations des utilisateurs
+  loadAllUserInfo(): void {
+    this.authService.getAllUserAndAllinfos().subscribe(
+      (data: any[]) => {
+        this.allUsers = data;  // Stocke toutes les infos dans une variable locale
+        console.log('Tous les utilisateurs récupérés:');
       },
       (error : any) => {
-        console.error("Erreur lors de la récupération de l'ID de l'utilisateur", error);
+        console.error("Erreur lors de la récupération des utilisateurs", error);
       }
     );
   }
 
-
-
-GetUserSendRequest(tableau_id_user_send_request : any): void{
-
-  
-}
-
+  // Méthode pour trouver le nom d'un utilisateur par son ID
+  GetNameUserById(IdNumberUserWhoSendRequest: number): string | undefined {
+    const user = this.allUsers.find(u => u.id_user === IdNumberUserWhoSendRequest);
+    return user ? user.username : 'Utilisateur inconnu';
+    
+  }
 
 
   // Méthode déclenchée quand on clique sur le bouton "+" (optionnel, pour alterner l'affichage)

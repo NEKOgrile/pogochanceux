@@ -25,14 +25,22 @@
     </div>
   </div>
 
-  <!-- Affichage des demandes d'amis -->
-  <div class="friend-requests">
-    <h2>Demandes d'amis</h2>
-    <div *ngIf="frienRequest.length === 0">Aucune demande d'ami.</div>
-    <div *ngFor="let request of frienRequest" class="friend-request-card">
-      <span>{{ request.username }} a envoyé une demande d'ami.</span>
-      <button class="btn accept-request">Accepter</button>
-      <button class="btn decline-request">Refuser</button>
+  <!-- Affichage des demandes d'amis reçues -->
+  <div *ngIf="frienRequest.length > 0" class="friend-requests">
+    <h2>Demandes d'amitié</h2>
+    <div class="friend-request-list">
+      <div *ngFor="let request of frienRequest" class="request-card">
+        <span>{{ GetNameUserById(request.friend_id) }} Vous demende en ami</span>
+        <div class="action-buttons">
+          <button class="btn accept-friend">Accepter</button>
+          <button class="btn reject-friend">Refuser</button>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- Si aucune demande d'amis n'est trouvée -->
+  <div *ngIf="frienRequest.length === 0" class="no-requests">
+    <p>Aucune demande d'amitié pour le moment.</p>
   </div>
 </div>

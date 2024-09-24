@@ -49,6 +49,11 @@ export class AuthService {
     return typeof window !== 'undefined' ? localStorage.getItem('username') : null;
   }
 
+  getAllUserAndAllinfos(): any {
+    return this.http.get(`${this.apiUrl}/get_all_all`); 
+  }
+  
+
   getUserId(): any {
     if (typeof window !== 'undefined' && window.localStorage) {
       return this.http.post(`${this.apiUrl}/select-id-user`, { user_name: localStorage.getItem('username') });
