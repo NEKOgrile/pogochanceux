@@ -40,78 +40,11 @@
   }
 }
 
-.player-list {
-  flex-grow: 1;
-  padding: 20px;
-  overflow-y: auto;
-  background-color: #212121;
-}
-
-.player-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  margin-bottom: 15px;
-  background-color: #3b4cca;
-  border: 2px solid #f3bc3a;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-
-  &:hover {
-    background-color: #354a9e;
-  }
-
-  .player-name {
-    font-weight: bold;
-    color: white;
-    font-size: 18px;
-  }
-
-  .player-action {
-    background-color: #ffcc00;
-    color: #2d2d2d;
-    padding: 10px;
-    font-size: 14px;
-    border-radius: 5px;
-    border: 1px solid #ffab00;
-
-    &:hover {
-      background-color: #ffab00;
-    }
-  }
-}
-
-.user-list {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #212121;
-  border-radius: 10px;
-  overflow-y: auto;
-}
-
-.user-card {
-  background-color: #3b4cca;
-  border: 2px solid #f3bc3a;
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 10px;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  &:hover {
-    background-color: #354a9e;
-  }
-}
-
 .user-list-container {
   position: relative;
   overflow-y: auto;
   background-color: #212121;
-  padding-top: 60px; /* Décalage sous la barre de recherche */
+  padding-top: 60px;
 }
 
 .search-bar {
@@ -169,32 +102,21 @@
   }
 }
 
-/* Ajout pour les demandes d'amis */
-.friend-requests {
-  flex-grow: 1;
-  padding: 20px;
-  overflow-y: auto;
-  background-color: #212121;
-  border-radius: 10px;
-  margin-top: 20px;
+.friend-requests ul {
+  list-style-type: none;
+  padding: 0;
 }
 
-.friend-request-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.request-card {
-  background-color: #3b4cca;
-  border: 2px solid #f3bc3a;
-  border-radius: 10px;
-  padding: 15px;
-  color: white;
+.friend-requests li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background-color 0.2s;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #3b4cca;
+  border: 2px solid #f3bc3a;
+  border-radius: 10px;
+  color: white;
 
   &:hover {
     background-color: #354a9e;
@@ -202,36 +124,44 @@
 
   .action-buttons {
     display: flex;
-    gap: 10px;
+    gap: 10px; /* Espace entre les boutons */
+  }
 
-    .btn {
-      border-radius: 10px;
-      padding: 5px 15px;
-      font-size: 16px;
-      width: auto;
-      height: auto;
+  button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px; /* Boutons arrondis */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 
-      &.accept-friend {
-        background-color: #28a745;
-        &:hover {
-          background-color: #218838;
-        }
-      }
+  .accept-friend {
+    background-color: #28a745; /* Vert */
+    color: white;
 
-      &.reject-friend {
-        background-color: #dc3545;
-        &:hover {
-          background-color: #c82333;
-        }
-      }
+    &:hover {
+      background-color: #218838;
+      transform: translateY(-3px); /* Animation au survol */
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .reject-friend {
+    background-color: #dc3545; /* Rouge */
+    color: white;
+
+    &:hover {
+      background-color: #c82333;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     }
   }
 }
 
 .no-requests {
-  padding: 20px;
   text-align: center;
-  background-color: #212121;
-  border-radius: 10px;
   color: white;
 }

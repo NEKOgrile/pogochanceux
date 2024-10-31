@@ -9,23 +9,17 @@ import { tap } from 'rxjs/operators';
   templateUrl: './friends.component.html',
   styleUrl: './friends.component.scss'
 })
-export class FriendsComponent implements OnInit { 
+export class FriendsComponent implements OnInit {
   users: any[] = [];              // La liste complète des utilisateurs
   filteredUsers: any[] = [];       // La liste filtrée des utilisateurs
   searchTerm: string = '';         // Terme de recherche pour filtrer les utilisateurs
   showUsers: boolean = false;      // Variable pour gérer l'affichage de la liste des utilisateurs
-  userId: number | null = null;
+  showFriendRequests: boolean = false; // Variable pour gérer l'affichage des demandes d'amis
+  userId: number | null = null;      
   frienRequest: any[] = [];        // Tableau avec les demandes d'amis pour l'utilisateur connecté
   allUsers: any[] = [];            // Liste pour stocker toutes les infos des utilisateurs
 
-
   constructor(private authService: AuthService) {}
-
-  // Initialisation du composant
-  //ngOnInit(): void {
-  //  this.GetRequest()
-  //}
-
 
   ngOnInit(): void {
     this.loadUsers();  // Charge les utilisateurs dès le démarrage
@@ -50,7 +44,29 @@ export class FriendsComponent implements OnInit {
       }
     }  
   }
+
+  acceptFridRequest(idUserWhoSendRequest: number): void {
+    console.log("Demande d'acceptation avec l'ID:", idUserWhoSendRequest);
+    
+    if (this.userId === null) {
+      console.error("Utilisateur non connecté !");
+      return;
+    }
   
+    this.authService.acceptFriendRequest(this.userId, idUserWhoSendRequest).subscribe(
+      response => {
+        console.log('Demande acceptée avec succès', response);
+      },
+      error => {
+        console.error('Erreur lors de l\'acceptation de la demande', error);
+      }
+    );
+  }
+  
+  
+
+
+
   // Méthode pour charger les utilisateurs depuis l'API
   loadUsers(): void {
     this.authService.getAllUsers().subscribe(
@@ -58,12 +74,12 @@ export class FriendsComponent implements OnInit {
         this.users = data;
         this.filteredUsers = data;  // Initialise filteredUsers avec tous les utilisateurs dès le départ
       },
-      (error) => {
+      (error : any) => {
         console.error("Erreur lors de la récupération des utilisateurs", error);
       }
     );
   }
-  
+
   // Méthode pour récupérer les demandes d'amis
   GetRequest(user_id_get: number | null): void {
     if (!user_id_get) {
@@ -76,12 +92,11 @@ export class FriendsComponent implements OnInit {
         console.log('Demandes d\'amitié reçues pour l\'id :', user_id_get, data);
         this.frienRequest = data; // Stocker les demandes d'amis
       },
-      (error) => {
+      (error : any) => {
         console.error("Erreur lors de la récupération des demandes d'amitié", error);
       }
     );
   }
-  
 
   // Méthode pour charger toutes les informations des utilisateurs
   loadAllUserInfo(): void {
@@ -90,7 +105,7 @@ export class FriendsComponent implements OnInit {
         this.allUsers = data;  // Stocke toutes les infos dans une variable locale
         console.log('Tous les utilisateurs récupérés:');
       },
-      (error : any) => {
+      (error: any) => {
         console.error("Erreur lors de la récupération des utilisateurs", error);
       }
     );
@@ -100,13 +115,16 @@ export class FriendsComponent implements OnInit {
   GetNameUserById(IdNumberUserWhoSendRequest: number): string | undefined {
     const user = this.allUsers.find(u => u.id_user === IdNumberUserWhoSendRequest);
     return user ? user.username : 'Utilisateur inconnu';
-    
   }
-
 
   // Méthode déclenchée quand on clique sur le bouton "+" (optionnel, pour alterner l'affichage)
   toggleUserList(): void {
     this.showUsers = !this.showUsers;  // Alterne l'affichage de la liste des utilisateurs
+  }
+
+  // Nouvelle méthode pour basculer l'affichage des demandes d'amis
+  toggleFriendRequests(): void {
+    this.showFriendRequests = !this.showFriendRequests; // Alterne l'affichage des demandes d'amis
   }
 
   // Méthode pour filtrer la liste des utilisateurs
@@ -118,4 +136,6 @@ export class FriendsComponent implements OnInit {
     } else {
       this.filteredUsers = this.users;  // Affiche tous les utilisateurs si la barre de recherche est vide
     }
-}}
+  }
+}
+

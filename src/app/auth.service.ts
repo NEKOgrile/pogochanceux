@@ -89,9 +89,12 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/friends/request`, { userId, friendId });
   }
 
-  acceptFriendRequest(userId: number, friendId: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/friends/accept`, { userId, friendId });
+  
+  acceptFriendRequest(userId: number | null, friendId: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/friends/accept`, { userId, friendId }, { responseType: 'text' });
   }
+  
+  
 
   rejectFriendRequest(userId: number, friendId: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/friends/reject`, { userId, friendId });

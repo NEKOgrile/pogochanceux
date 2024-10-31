@@ -1,7 +1,7 @@
 <div class="main-container">
   <div class="header">
     <button class="btn add-friend" (click)="toggleUserList()">+</button>
-    <button class="btn search-friend">🔍</button>
+    <button class="btn search-friend" (click)="toggleFriendRequests()">🔔</button>
   </div>
 
   <!-- Affichage de la liste des utilisateurs avec une barre de recherche -->
@@ -26,21 +26,21 @@
   </div>
 
   <!-- Affichage des demandes d'amis reçues -->
-  <div *ngIf="frienRequest.length > 0" class="friend-requests">
+  <div *ngIf=" frienRequest.length > 0" class="friend-requests">
     <h2>Demandes d'amitié</h2>
-    <div class="friend-request-list">
-      <div *ngFor="let request of frienRequest" class="request-card">
-        <span>{{ GetNameUserById(request.friend_id) }} Vous demende en ami</span>
+    <ul>
+      <li *ngFor="let request of frienRequest">
+        Demande de {{ GetNameUserById(request.user_id) }} pour devenir ami avec {{ GetNameUserById(request.friend_id) }}
         <div class="action-buttons">
-          <button class="btn accept-friend">Accepter</button>
+          <button class="btn accept-friend" (click)="acceptFridRequest(request.friend_id)">Accepter</button>
           <button class="btn reject-friend">Refuser</button>
         </div>
-      </div>
-    </div>
+      </li>
+    </ul>
   </div>
 
   <!-- Si aucune demande d'amis n'est trouvée -->
-  <div *ngIf="frienRequest.length === 0" class="no-requests">
+  <div *ngIf=" frienRequest.length === 0" class="no-requests">
     <p>Aucune demande d'amitié pour le moment.</p>
   </div>
 </div>
