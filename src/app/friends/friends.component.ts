@@ -51,16 +51,40 @@ export class FriendsComponent implements OnInit {
     if (this.userId === null) {
       console.error("Utilisateur non connecté !");
       return;
-    }
+    } else {
+      this.authService.acceptFriendRequest(this.userId, idUserWhoSendRequest).subscribe(
+        response => {
+          console.log('Demande acceptée avec succès', response);
   
-    this.authService.acceptFriendRequest(this.userId, idUserWhoSendRequest).subscribe(
-      response => {
-        console.log('Demande acceptée avec succès', response);
-      },
-      error => {
-        console.error('Erreur lors de l\'acceptation de la demande', error);
-      }
-    );
+          // Supprimer l'élément du tableau où friend_id correspond à idUserWhoSendRequest
+          this.frienRequest = this.frienRequest.filter(request => request.friend_id !== idUserWhoSendRequest);
+          console.log('Tableau mis à jour:', this.frienRequest);
+        },
+        error => {
+          console.error("Erreur lors de l'acceptation de la demande", error);
+        }
+      );
+    }
+  }
+  rejectFridRequest(idUserWhoSendRequest: number): void{
+    if (this.userId === null) {
+      console.error("Utilisateur non connecté !");
+      return;
+    } else {
+      this.authService.rejectFriendRequest(this.userId, idUserWhoSendRequest).subscribe(
+        response => {
+          console.log('Demande refusé avec succès', response);
+  
+          // Supprimer l'élément du tableau où friend_id correspond à idUserWhoSendRequest
+          this.frienRequest = this.frienRequest.filter(request => request.friend_id !== idUserWhoSendRequest);
+          console.log('Tableau mis à jour:', this.frienRequest);
+        },
+        error => {
+          console.error("Erreur lors du refus de la demande", error);
+        }
+      );
+    }
+
   }
   
   

@@ -96,7 +96,7 @@ export class AuthService {
   
   
 
-  rejectFriendRequest(userId: number, friendId: string): Observable<any> {
+  rejectFriendRequest(userId: number | null, friendId: number): Observable<any> {
     return this.http.post(`${this.apiUrl}/friends/reject`, { userId, friendId });
   }
   getAllUsers(): Observable<any> {

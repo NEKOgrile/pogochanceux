@@ -33,7 +33,7 @@
         Demande de {{ GetNameUserById(request.user_id) }} pour devenir ami avec {{ GetNameUserById(request.friend_id) }}
         <div class="action-buttons">
           <button class="btn accept-friend" (click)="acceptFridRequest(request.friend_id)">Accepter</button>
-          <button class="btn reject-friend">Refuser</button>
+          <button class="btn reject-friend" (click)="rejectFridRequest(request.friend_id)">Refuser</button>
         </div>
       </li>
     </ul>
