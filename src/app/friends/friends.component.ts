@@ -18,6 +18,7 @@ export class FriendsComponent implements OnInit {
   userId: number | null = null;      
   frienRequest: any[] = [];        // Tableau avec les demandes d'amis pour l'utilisateur connecté
   allUsers: any[] = [];            // Liste pour stocker toutes les infos des utilisateurs
+  selectedUser: any | null = null; // Propriété pour stocker l'utilisateur sélectionné
 
   constructor(private authService: AuthService) {}
 
@@ -44,6 +45,24 @@ export class FriendsComponent implements OnInit {
       }
     }  
   }
+
+  addFriend(user: any): void {
+    console.log(`Ajouter ${user.username} en ami`);
+    // Ajoute ici la logique pour envoyer une demande d'amitié
+  }
+  
+  blockUser(user: any): void {
+    console.log(`Bloquer ${user.username}`);
+    // Ajoute ici la logique pour bloquer l'utilisateur
+  }
+  
+  // Méthode pour sélectionner un utilisateur et afficher les options "Ajouter" et "Bloquer"
+  selectUser(user: any): void {
+    this.selectedUser = this.selectedUser === user ? null : user;
+    console.log("Utilisateur sélectionné:", this.selectedUser); // Vérifie que le clic fonctionne
+  }
+  
+
 
   acceptFridRequest(idUserWhoSendRequest: number): void {
     console.log("Demande d'acceptation avec l'ID:", idUserWhoSendRequest);
@@ -87,9 +106,6 @@ export class FriendsComponent implements OnInit {
 
   }
   
-  
-
-
 
   // Méthode pour charger les utilisateurs depuis l'API
   loadUsers(): void {

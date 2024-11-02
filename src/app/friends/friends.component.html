@@ -19,11 +19,19 @@
 
     <!-- Liste des utilisateurs -->
     <div class="user-list">
-      <div *ngFor="let user of filteredUsers" class="user-card">
+      <div *ngFor="let user of filteredUsers" class="user-card" (click)="selectUser(user)">
         <span>{{ user.username }}</span>
+    
+        <!-- Actions (Ajouter / Bloquer) affichées sous l'utilisateur sélectionné -->
+        <div *ngIf="selectedUser === user" class="user-actions">
+          <button class="btn accept-friend" (click)="addFriend(user); $event.stopPropagation()">Ajouter</button>
+          <button class="btn reject-friend" (click)="blockUser(user); $event.stopPropagation()">Bloquer</button>
+        </div>
       </div>
     </div>
+       
   </div>
+
 
   <!-- Affichage des demandes d'amis reçues -->
   <div *ngIf=" frienRequest.length > 0" class="friend-requests">

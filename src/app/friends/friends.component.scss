@@ -165,3 +165,54 @@
   text-align: center;
   color: white;
 }
+.user-card {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.user-actions {
+  margin-top: 8px;
+  display: flex;
+  gap: 10px;
+
+  .action-buttons {
+    display: flex;
+    gap: 10px; /* Espace entre les boutons */
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px; /* Boutons arrondis */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .accept-friend {
+    background-color: #28a745; /* Vert */
+    color: white;
+
+    &:hover {
+      background-color: #218838;
+      transform: translateY(-3px); /* Animation au survol */
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .reject-friend {
+    background-color: #dc3545; /* Rouge */
+    color: white;
+
+    &:hover {
+      background-color: #c82333;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+
