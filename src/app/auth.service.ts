@@ -86,7 +86,7 @@ export class AuthService {
   }
 
   sendFriendRequest(userId: number, friendId: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/friends/request`, { userId, friendId });
+    return this.http.post(`${this.apiUrl}/friends/request/send`, { userId, friendId });
   }
 
   
@@ -99,10 +99,14 @@ export class AuthService {
   rejectFriendRequest(userId: number | null, friendId: number): Observable<any> {
     return this.http.post(`${this.apiUrl}/friends/reject`, { userId, friendId });
   }
+
   getAllUsers(): Observable<any> {
     return this.http.get(`${this.apiUrl}/users`).pipe(
     );
   }
 
-
+  getAllFriendsOfUserLogin(userId: number | null): Observable<any> {
+    return this.http.post(`${this.apiUrl}/friends/get/all`, { userId });
+  }
+   
 }
